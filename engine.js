@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import debug from './debug';
 
 class Engine {
@@ -6,33 +7,33 @@ class Engine {
     this.instances = [];
   }
 
-  play() {
-    this.raf = requestAnimationFrame(this.tick.bind(this));
+  _play() {
+    this.raf = requestAnimationFrame(this._tick.bind(this));
   }
 
-  stop() {
+  _stop() {
     this.raf = cancelAnimationFrame(this.raf);
     debug('raf', this.raf);
     debug('instances', this.instances.length);
   }
 
-  tick(t) {
+  _tick(t) {
     this.instances.forEach((ins) => ins.tick(t));
-    if (this.instances.length) this.play();
+    if (this.instances.length) this._play();
     debug('raf', this.raf);
     debug('instances', this.instances.length);
   }
 
   add(Animate) {
     this.instances.push(Animate);
-    if (this.instances.length === 1) this.play();
+    if (this.instances.length === 1) this._play();
   }
 
   remove(Animate) {
     const i = this.instances.indexOf(Animate);
     if (i > -1 && i < this.instances.length) {
       this.instances.splice(i, 1);
-      if (!this.instances.length) this.stop();
+      if (!this.instances.length) this._stop();
     }
   }
 }
