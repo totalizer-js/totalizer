@@ -46,6 +46,9 @@ export default {
       targets: '.el',
       translateX: 250,
       loop: true,
+      duration: 2000,
+      delay: 1000,
+      direction: 'alternate',
     });
     // document.querySelector('.el').addEventListener('click', () => {
     //   anime({

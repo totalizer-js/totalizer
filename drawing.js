@@ -3,6 +3,8 @@ import engine from './engine';
 
 // const between = (val, min, max) => Math.min(Math.max(val, min), max);
 
+import A from './A';
+
 class Draw {
   constructor(path, opts = {}) {
     if (typeof a === 'string') {
@@ -24,6 +26,8 @@ class Draw {
     this.from = this.totalLen;
     this.to = 0;
 
+    this.A = new A(this.totalLen, 0, this.duration);
+
     this.reset();
     if (this.autoplay) this.play();
   }
@@ -36,27 +40,16 @@ class Draw {
     if (this.currentTime < this.duration) {
       this.render();
     } else if (this.loop) {
-      // this.currentTime = between(this.currentTime - this.duration, 0, this.duration);
-      // this.startTime = t - this.currentTime;
-      // this.lastTime = this.currentTime;
-      // this.reverse = !this.reverse;
-
-      // debug('cur', `${this.currentTime}  ${this.startTime} ${this.lastTime}`);
       this.currentTime = 0;
       this.startTime = t;
       this.lastTime = 0;
-      this.reverse = !this.reverse;
 
       this.render();
     } else this.complete();
   }
 
   render() {
-    if (!this.reverse) {
-      this.cur = this.totalLen * (1 - this.currentTime / this.duration);
-    } else {
-      this.cur = this.totalLen * (this.currentTime / this.duration);
-    }
+    this.cur = this.A.getCurrentValue(this.currentTime);
     this.path.setAttribute('stroke-dashoffset', this.cur);
   }
 
@@ -76,7 +69,6 @@ class Draw {
      */
     this.paused = true;
     this.completed = false;
-    this.reverse = false;
 
     /**
      * 初始化
