@@ -257,6 +257,7 @@ const defaultInstanceSettings = {
     const name = easing.split('(')[0];
     const ease = penner[name];
     const args = parseEasingParameters(easing);
+
     switch (name) {
       case 'spring' : return spring(easing, duration);
       case 'cubicBezier' : return applyArguments(bezier, args);
