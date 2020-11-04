@@ -50,6 +50,12 @@ export default {
       delay: 1000,
       direction: 'alternate',
     });
+
+    // eslint-disable-next-line prefer-promise-reject-errors
+    Promise
+      .reject({ msg: 'error' })
+      .then(() => {})
+      .catch(() => {});
     // document.querySelector('.el').addEventListener('click', () => {
     //   anime({
     //     targets: '.el',
