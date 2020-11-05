@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import debug from './debug';
+// import debug from './debug';
 
 class Engine {
   constructor() {
@@ -13,15 +13,15 @@ class Engine {
 
   _stop() {
     this.raf = cancelAnimationFrame(this.raf);
-    debug('raf', this.raf);
-    debug('instances', this.instances.length);
+    // debug('raf', this.raf);
+    // debug('instances', this.instances.length);
   }
 
   _tick(t) {
     this.instances.forEach((ins) => ins.tick(t));
     if (this.instances.length) this._play();
-    debug('raf', this.raf);
-    debug('instances', this.instances.length);
+    // debug('raf', this.raf);
+    // debug('instances', this.instances.length);
   }
 
   add(Animate) {

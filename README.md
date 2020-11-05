@@ -93,6 +93,9 @@ const move = Animate(
 渲染引擎 engine.js
 
 缓动模块 easing.js
+    Coding: https://github.com/danro/jquery-easing/blob/master/jquery.easing.js
+    Demo：https://easings.net/
+
 
 数据模块 data.js（颜色，百分比，数值，角度）
 

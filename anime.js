@@ -211,7 +211,6 @@ const defaultInstanceSettings = {
   
   const penner = (() => {
   
-    // Based on jQuery UI's implemenation of easing equations from Robert Penner (http://www.robertpenner.com/easing)
   
     const eases = { linear: () => t => t };
   
