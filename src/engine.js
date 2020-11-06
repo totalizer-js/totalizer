@@ -18,6 +18,7 @@ class Engine {
   }
 
   add(AnimateInstance) {
+    if (this.instances.includes(AnimateInstance)) return;
     this.instances.push(AnimateInstance);
     if (this.instances.length === 1) this.play();
   }
