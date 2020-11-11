@@ -1,29 +1,49 @@
 <template>
   <div id="page">
       <svg viewBox="0 0 300 300" width="300px" height="300px">
-          <circle cx="0" cy="100" r="10" fill="#08c" ref="circle"/>
+          <circle cx="0" cy="0" r="10" fill="#08c" ref="circle"/>
       </svg>
+
+      <a href="javascript:void(0)" @click="play">Play</a>
+      <a href="javascript:void(0)" @click="pause">Pause</a>
   </div>
 </template>
 <script>
 import Animate from '../src/main';
 
 export default {
+  data() {
+    return {
+      ani: '',
+    };
+  },
   mounted() {
-    const ani = new Animate(
+    this.ani = new Animate(
       this.$refs.circle,
       {
-        name: 'cx',
-        value: 200,
+        cx: [250, 50],
+        cy: [50, 250],
       },
       {
-        duration: 3000,
-        easing: 'easeOutElastic',
+        duration: 1000,
+        delay: 200,
+        endDelay: 200,
+        easing: 'easeOutBounce',
+        loop: true,
+        alternate: true,
       },
-
     );
-    ani.play();
+    this.ani.play();
   },
+  methods: {
+    play() {
+      this.ani.play();
+    },
+    pause() {
+      this.ani.pause();
+    },
+  },
+
 };
 </script>
 
