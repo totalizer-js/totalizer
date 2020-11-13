@@ -1,6 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import engine from './engine';
-import eases from './easing';
+import eases from './eases';
+
+import tweens from './tweens';
 
 const STATUS = {
   READY: 0,
@@ -12,7 +14,7 @@ const STATUS = {
 };
 
 class Animate {
-  constructor(target, attrs, opts) {
+  constructor(target, props, opts) {
     /**
      * target
      */
@@ -21,18 +23,8 @@ class Animate {
     /**
      * tweens
      */
-    this.tweens = Object.entries(attrs).map(([key, value]) => {
-      const tween = {};
-      tween.attr = key;
-      if (Array.isArray(value)) {
-        tween.from = value[0] || 0;
-        tween.to = value[1] || 0;
-      } else {
-        tween.from = 0;
-        tween.to = value;
-      }
-      return tween;
-    });
+    this.tweens = tweens(target, props);
+    console.log(JSON.stringify(this.tweens[0]));
     /**
      * opts
      * to do: 合法判定
@@ -80,7 +72,7 @@ class Animate {
 
     this.tweens.forEach((tween) => {
       const value = tween.from + (tween.to - tween.from) * ratio;
-      this.target.setAttribute(tween.attr, value);
+      this.target.setAttribute(tween.prop, value);
     });
   }
 

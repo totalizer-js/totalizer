@@ -821,15 +821,8 @@ const defaultInstanceSettings = {
     const id = instanceID;
     instanceID++;
 
-    console.log(mergeObjects(instanceSettings, {
-      id: id,
-      children: [],
-      animatables: animatables,
-      animations: animations,
-      duration: timings.duration,
-      delay: timings.delay,
-      endDelay: timings.endDelay
-    }));
+    console.log(animations)
+
     return mergeObjects(instanceSettings, {
       id: id,
       children: [],
