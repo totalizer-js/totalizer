@@ -9,8 +9,7 @@ const STATUS = {
   DELAY: 1,
   PLAYING: 2,
   PAUSE: 3,
-  END_DELAY: 4,
-  FINISH: 5,
+  FINISH: 4,
 };
 
 class Animate {
@@ -24,7 +23,7 @@ class Animate {
      * tweens
      */
     this.tweens = tweens(target, props);
-    console.log(JSON.stringify(this.tweens[0]));
+    // console.log(JSON.stringify(this.tweens[0]));
     /**
      * opts
      * to do: 合法判定
@@ -42,7 +41,6 @@ class Animate {
     this.duration = opts.duration || 300;
     this.easing = opts.easing || 'linear';
     this.delay = opts.delay || 0;
-    this.endDelay = opts.endDelay || 0;
 
     /**
      * status
@@ -88,9 +86,6 @@ class Animate {
     } else if (this.now <= this.duration + this.delay) {
       this.cur = this.now - this.delay;
       this.status = STATUS.PLAYING;
-    } else if (this.now <= this.duration + this.delay + this.endDelay) {
-      this.cur = this.duration;
-      this.status = STATUS.PLAYING;
     } else if (this.loop) {
       this.cur = this.duration;
       this.start = 0;
@@ -111,7 +106,7 @@ class Animate {
   }
 
   play() {
-    if ([STATUS.DELAY, STATUS.PLAYING, STATUS.END_DELAY].includes(this.status)) return;
+    if ([STATUS.DELAY, STATUS.PLAYING].includes(this.status)) return;
     if (this.status === STATUS.FINISH) this.reset();
     engine.add(this);
   }

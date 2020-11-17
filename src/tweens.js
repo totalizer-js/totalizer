@@ -9,11 +9,34 @@ const transformProps = ['translateX', 'translateY', 'translateZ', 'rotate', 'rot
 //   return split ? (split[1] || '') : '';
 // }
 
+// function validateValue(val, unit) {
+//   // if (is.col(val)) return colorToRgb(val);
+//   if (/\s/g.test(val)) return val;
+//   const originalUnit = getUnit(val);
+//   const unitLess = originalUnit ? val.substr(0, val.length - originalUnit.length) : val;
+//   if (unit) return unitLess + unit;
+//   return unitLess;
+// }
+
+// function decomposeValue(val, unit) {
+//   const rgx = /[+-]?\d*\.?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g; // handles exponents notation
+//   const value = `${validateValue(val, unit)}`;
+//   return {
+//     original: value,
+//     numbers: value.match(rgx) ? value.match(rgx).map(Number) : [0],
+//     strings: (typeof value === 'string' || unit) ? value.split(rgx) : [],
+//   };
+// }
+
+// const a = decomposeValue('50px 50px rgba(0,0,0,.5)');
+// console.log(a);
+
 const tweens = (el, props) => Object.entries(props).map(([prop, value]) => {
   // const unit = getUnit(value);
 
   let type = 'object';
   let originalValue = 0;
+
   if (transformProps.includes(prop)) {
     type = 'transform';
   } else if (el.getAttribute(prop) !== null) {
@@ -26,6 +49,14 @@ const tweens = (el, props) => Object.entries(props).map(([prop, value]) => {
   }
 
   const [from, to] = Array.isArray(value) ? value : [originalValue, value];
+
+  /**
+   * from
+   *  - number
+   *  - string
+   *  - unit
+   *  - original
+   */
 
   return {
     prop, type, from: parseFloat(from), to: parseFloat(to),

@@ -13,7 +13,7 @@
 </template>
 <script>
 import Animate from '../src/main';
-import anime from '../anime';
+// import anime from '../anime';
 
 export default {
   data() {
@@ -22,32 +22,30 @@ export default {
     };
   },
   mounted() {
-    const demo = anime({
-      targets: this.$refs.div,
-      // backgroundColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,1)'],
-      // borderRadius: ['0%', '50%'],
-      width: '200px',
-      height: '200',
-      easing: 'easeInOutQuad',
-      loop: true,
-      direction: 'alternate',
-      duration: 1000,
-      delay: 200,
-      endDelay: 200,
-    });
-    demo.play();
+    // const demo = anime({
+    //   targets: this.$refs.div,
+    //   // backgroundColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,1)'],
+    //   // borderRadius: ['0%', '50%'],
+    //   width: '200px',
+    //   height: '200',
+    //   easing: 'easeInOutQuad',
+    //   loop: true,
+    //   direction: 'alternate',
+    //   duration: 1000,
+    //   delay: 200,
+    //   endDelay: 200,
+    // });
+    // demo.play();
 
     this.ani = new Animate(
       this.$refs.circle,
       {
-        cx: 50,
-        cy: 250,
-        k: [0, 10],
+        cx: '50px',
+        cy: '250px',
       },
       {
         duration: 1000,
-        delay: 200,
-        endDelay: 200,
+        delay: 400,
         easing: 'easeOutBounce',
         loop: true,
         alternate: true,
