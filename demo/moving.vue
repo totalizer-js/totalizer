@@ -1,7 +1,7 @@
 <template>
   <div id="page">
       <svg viewBox="0 0 300 300" width="300px" height="300px">
-          <circle cx="250" cy="50" r="10" fill="#08c" ref="circle"/>
+          <circle cx="250" cy="50" r="10" ref="circle"/>
       </svg>
 
       <div ref="div" class="play">
@@ -14,6 +14,7 @@
 <script>
 import Animate from '../src/main';
 // import anime from '../anime';
+// import tween from '../src/tweens';
 
 export default {
   data() {
@@ -22,6 +23,11 @@ export default {
     };
   },
   mounted() {
+    // console.log(tween(this.$refs.circle, {
+    //   fill: '#def',
+    //   cx: '50px',
+    //   cy: '250px',
+    // }));
     // const demo = anime({
     //   targets: this.$refs.div,
     //   // backgroundColor: ['rgba(0,0,0,0)', 'rgba(0,0,0,1)'],
@@ -42,6 +48,7 @@ export default {
       {
         cx: '50px',
         cy: '250px',
+        fill: '#d00',
       },
       {
         duration: 1000,

@@ -2,7 +2,7 @@
 import engine from './engine';
 import eases from './eases';
 
-import tweens from './tweens';
+import { tweensDecompose, tweensRender } from './tweens';
 
 const STATUS = {
   READY: 0,
@@ -22,8 +22,7 @@ class Animate {
     /**
      * tweens
      */
-    this.tweens = tweens(target, props);
-    // console.log(JSON.stringify(this.tweens[0]));
+    this.tweens = tweensDecompose(target, props);
     /**
      * opts
      * to do: 合法判定
@@ -67,11 +66,7 @@ class Animate {
   render() {
     const cur = this.reverse ? (this.duration - this.cur) : this.cur;
     const ratio = eases[this.easing]()(cur / this.duration);
-
-    this.tweens.forEach((tween) => {
-      const value = tween.from + (tween.to - tween.from) * ratio;
-      this.target.setAttribute(tween.prop, value);
-    });
+    tweensRender(this.target, this.tweens, ratio);
   }
 
   tick(t) {

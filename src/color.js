@@ -1,5 +1,9 @@
-const RE_HEX = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-const RE_HEX_2 = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+/**
+ * isColor 判断是否为颜色
+ * color2rgba 解析颜色，转换为RGBA数值
+ */
+const RE_HEX = /^#([a-f\d])([a-f\d])([a-f\d])$/i;
+const RE_HEX_2 = /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
 const RE_RGB = /^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/;
 const RE_RGBA = /^rgba\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*([\d.]+)\s*\)$/;
 const RE_HSL = /^hsl\(\s*(\d+)\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%\s*\)$/;
@@ -15,9 +19,12 @@ const hue2rgb = (p, q, t) => {
   return p;
 };
 
-const isColor = (s) => [RE_HEX, RE_HEX_2, RE_RGB, RE_RGBA, RE_HSL, RE_HSLA].some((re) => re.test(s.trim()));
-
-const color2rgba = (color) => {
+export const isColor = (s) => {
+  const str = s.toString().trim();
+  return [RE_HEX, RE_HEX_2, RE_RGB, RE_RGBA, RE_HSL, RE_HSLA]
+    .some((re) => re.test(str));
+};
+export const color2rgba = (color) => {
   const str = color.trim();
   let rgba;
   /* hex */
@@ -73,25 +80,25 @@ const color2rgba = (color) => {
       a,
     ];
   }
-  return false;
+  return null;
 };
 
 /**
  * 测试用例
  */
-console.log(isColor('#fff'));
-console.log(isColor('#fd86ad'));
-console.log(isColor('rgba(0,0,0,.2)'));
-console.log(isColor('rgb(0 ,0,244)'));
-console.log(isColor('rgba(0,0, 0, 1)'));
-console.log(isColor('hsl(0, 10%, 20%)'));
-console.log(isColor('hsla( 0, 10%, 90%, .5)'));
-console.log(color2rgba('#ffffbd').join() === '255,255,189,1');
-console.log(color2rgba('#fbd').join() === '255,187,221,1');
-console.log(color2rgba(' #00f ').join() === '0,0,255,1');
-console.log(color2rgba(' hsl( 120, 100%, 75%)').join() === '0.5,1,0.5,1');
-console.log(color2rgba('rgb(10, 10, 244)').join() === '10,10,244,1');
-console.log(color2rgba('rgb( 10,10,244)').join() === '10,10,244,1');
-console.log(color2rgba('rgba(10,10,244,.1)').join() === '10,10,244,0.1');
-console.log(color2rgba(' rgba(0,10,244, 0) ').join() === '0,10,244,0');
-console.log(color2rgba('rgba( 10,10 , 244 , .1245 )').join() === '10,10,244,0.1245');
+// console.log(isColor('#fff'));
+// console.log(isColor('#fd86ad'));
+// console.log(isColor('rgba(0,0,0,.2)'));
+// console.log(isColor('rgb(0 ,0,244)'));
+// console.log(isColor('rgba(0,0, 0, 1)'));
+// console.log(isColor('hsl(0, 10%, 20%)'));
+// console.log(isColor('hsla( 0, 10%, 90%, .5)'));
+// console.log(color2rgba('#ffffbd').join() === '255,255,189,1');
+// console.log(color2rgba('#fbd').join() === '255,187,221,1');
+// console.log(color2rgba(' #00f ').join() === '0,0,255,1');
+// console.log(color2rgba(' hsl( 120, 100%, 75%)').join() === '0.5,1,0.5,1');
+// console.log(color2rgba('rgb(10, 10, 244)').join() === '10,10,244,1');
+// console.log(color2rgba('rgb( 10,10,244)').join() === '10,10,244,1');
+// console.log(color2rgba('rgba(10,10,244,.1)').join() === '10,10,244,0.1');
+// console.log(color2rgba(' rgba(0,10,244, 0) ').join() === '0,10,244,0');
+// console.log(color2rgba('rgba( 10,10 , 244 , .1245 )').join() === '10,10,244,0.1245');
