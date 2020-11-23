@@ -12,7 +12,7 @@ const decompose = (str) => {
       ['rgba(', ',', ',', ',', ')'],
     ];
   } else {
-    const val = /^([\d.]+)([a-z]*)$/i.exec(str);
+    const val = /^([\d.]+)([a-z%]*)$/i.exec(str);
     numbers = [parseFloat(val[1])];
     strings = ['', val[2]];
   }
@@ -28,12 +28,25 @@ const decompose = (str) => {
  * @param {*} props 变化的属性值
  * @return [prop, type, from, to]
  */
+
+function getElementTransforms(el) {
+  const str = el.style.transform || '';
+  console.log(str);
+  const reg = /(\w+)\(([^)]*)\)/g;
+  const transforms = new Map();
+  // eslint-disable-next-line no-cond-assign
+  let m; while (m = reg.exec(str)) transforms.set(m[1], m[2]);
+  console.log(transforms);
+  return transforms;
+}
 export const tweensDecompose = (el, props) => Object.entries(props).map(([prop, value]) => {
   let [type, original] = ['', ''];
   const transformProps = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'perspective', 'matrix', 'matrix3d'];
 
   if (transformProps.includes(prop)) {
     type = 'transform';
+    const a = getElementTransforms(el).get(prop);
+    console.log(a);
   } else if (el.getAttribute(prop) !== null) {
     type = 'attribute';
     original = el.getAttribute(prop);

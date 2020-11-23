@@ -13,32 +13,22 @@ const STATUS = {
 };
 
 class Animate {
-  constructor(target, props, opts) {
+  constructor(opts) {
     /**
-     * target
+     * el
      */
-    this.target = target;
-
+    this.el = opts.el;
     /**
      * tweens
      */
-    this.tweens = tweensDecompose(target, props);
+    this.tweens = tweensDecompose(this.el, opts.props || {});
     /**
      * opts
-     * to do: 合法判定
      */
-    // const default = {
-    //   loop: false,
-    //   alternate: false,
-    //   duration: 300,
-    //   easing: 'linear',
-    //   delay:0,
-    //   endDelay:0
-    // }
     this.loop = !!opts.loop;
     this.alternate = opts.alternate || false;
     this.duration = opts.duration || 300;
-    this.easing = opts.easing || 'linear';
+    this.easing = (eases[opts.easing] || eases.linear)();
     this.delay = opts.delay || 0;
 
     /**
@@ -46,7 +36,7 @@ class Animate {
      */
     this.status = STATUS.READY;
     this.reverse = false;
-    this._cur = 0;
+    this._cur = 0; // 动画运行时间
     this.now = 0; // 运行时间
     this.start = 0; // 开始时间
     this.last = 0; // 上次运行时间
@@ -65,8 +55,8 @@ class Animate {
 
   render() {
     const cur = this.reverse ? (this.duration - this.cur) : this.cur;
-    const ratio = eases[this.easing]()(cur / this.duration);
-    tweensRender(this.target, this.tweens, ratio);
+    const ratio = this.easing(cur / this.duration);
+    tweensRender(this.el, this.tweens, ratio);
   }
 
   tick(t) {
@@ -122,6 +112,11 @@ class Animate {
 
     this.status = STATUS.FINISH;
     engine.remove(this);
+  }
+
+  process(ratio) {
+    const val = Math.max(Math.min(ratio, 1), 0);
+    this.cur = val * this.duration;
   }
 }
 

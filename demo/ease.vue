@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import easing from '../src/easing';
+import easing from '../src/eases';
 
 export default {
 

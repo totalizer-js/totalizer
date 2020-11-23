@@ -1,3 +1,6 @@
+/**
+ * 渲染引擎
+ */
 class Engine {
   constructor() {
     this.raf = '';
