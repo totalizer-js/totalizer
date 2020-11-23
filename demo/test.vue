@@ -1,14 +1,14 @@
 <template>
   <div class="page">
-    <h1>props 测试</h1>
+    <h1>Props 测试</h1>
     <section>
-      <h2>attribute 【数值】</h2>
+      <h2>ATTRIBUTE 【数值】</h2>
       <svg viewBox="0 0 400 200">
         <circle cx="50" cy="100" r="2" fill="#000" ref="test01_circle" />
       </svg>
     </section>
     <section>
-      <h2>css 【数值】+【单位】</h2>
+      <h2>CSS 【数值】+【单位】</h2>
       <svg viewBox="0 0 400 200"></svg>
       <div
         ref="test02_div"
@@ -24,7 +24,7 @@
       ></div>
     </section>
     <section>
-      <h2>attribute & css 【颜色】</h2>
+      <h2>ATTRIBUTE & CSS 【颜色】</h2>
       <svg viewBox="0 0 400 200">
         <circle cx="120" cy="100" r="50" fill="#fff" ref="test03_circle" />
       </svg>
@@ -43,7 +43,7 @@
     </section>
 
     <section>
-      <h2>transform</h2>
+      <h2>TRANSFORM</h2>
       <svg viewBox="0 0 400 200">
         <text x="100" y="100">暂不支持</text>
       </svg>
@@ -52,6 +52,27 @@
     <section>
       <h2>缓动</h2>
       <svg viewBox="0 0 400 200" ref="eases"></svg>
+    </section>
+    <h1>SVG 动画</h1>
+    <section>
+      <h2>Path Drawing</h2>
+      <svg viewBox="0 0 400 200" >
+        <path ref="path" fill="none" stroke="currentColor" stroke-width="1" d="M58 80V50.12C57.7 41.6 51.14 35 43 35a15 15 0 0 0 0 30h7.5v15H43a30 30 0 1 1 0-60c16.42 0 29.5 13.23 30 29.89V80H58z"></path>
+      </svg>
+    </section>
+
+    <section>
+      <h2>Path Moving</h2>
+      <svg viewBox="0 0 400 200" >
+          <circle cx="20" cy="10" r="5" fill="#08c" ref="moving_circle" />
+          <path ref="moving_path" fill="none" stroke="currentColor" stroke-width="1" d="M58 80V50.12C57.7 41.6 51.14 35 43 35a15 15 0 0 0 0 30h7.5v15H43a30 30 0 1 1 0-60c16.42 0 29.5 13.23 30 29.89V80H58z"></path>
+      </svg>
+    </section>
+
+    <section>
+      <h2>Path Changing</h2>
+      <svg viewBox="0 0 400 200" >
+      </svg>
     </section>
   </div>
 </template>
@@ -71,6 +92,8 @@ export default {
     this.test02();
     this.test03();
     this.easesDemo();
+    this.drawingDemo();
+    this.movingDemo();
   },
   methods: {
     test01() {
@@ -172,6 +195,28 @@ export default {
         this.$refs.eases.appendChild(rect);
       });
     },
+    drawingDemo() {
+      const ani = new Animate({
+        el: this.$refs.path,
+        drawing: true,
+        delay: 1000,
+        duration: 2000,
+        loop: true,
+        alternate: true,
+      });
+      ani.play();
+    },
+    movingDemo() {
+      const ani = new Animate({
+        el: this.$refs.moving_circle,
+        movingPath: this.$refs.moving_path,
+        delay: 1000,
+        duration: 2000,
+        loop: true,
+        alternate: true,
+      });
+      ani.play();
+    },
     play() {
       this.ani.play();
     },
@@ -212,7 +257,7 @@ section {
   background: #fff;
 }
 h1 {
-  padding: 10px 0;
+  padding: 20px;
   clear: both;
   font-size: 18px;
   line-height: 20px;

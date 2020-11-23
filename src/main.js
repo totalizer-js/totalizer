@@ -11,6 +11,50 @@ const STATUS = {
   PAUSE: 3,
   FINISH: 4,
 };
+function getParentSvgEl(el) {
+  let parentEl = el.parentNode;
+  while (parentEl instanceof SVGElement) {
+    if (!(parentEl.parentNode instanceof SVGElement)) break;
+    parentEl = parentEl.parentNode;
+  }
+  return parentEl;
+}
+function getParentSvg(pathEl, svgData) {
+  const svg = svgData || {};
+  const parentSvgEl = svg.el || getParentSvgEl(pathEl);
+  const rect = parentSvgEl.getBoundingClientRect();
+  const viewBoxAttr = parentSvgEl.getAttribute('viewBox');
+  const { width } = rect;
+  const { height } = rect;
+  const viewBox = svg.viewBox || (viewBoxAttr ? viewBoxAttr.split(' ') : [0, 0, width, height]);
+  return {
+    el: parentSvgEl,
+    viewBox,
+    x: viewBox[0] / 1,
+    y: viewBox[1] / 1,
+    w: width / viewBox[2],
+    h: height / viewBox[3],
+  };
+}
+function getPathProgress(path, progress) {
+  function point(offset = 0) {
+    const l = progress + offset >= 1 ? progress + offset : 0;
+    return path.el.getPointAtLength(l);
+  }
+  console.log(path.el.getPointAtLength(0));
+  const svg = getParentSvg(path.el, path.svg);
+  const p = point();
+  const p0 = point(-1);
+  const p1 = point(+1);
+  switch (path.property) {
+    case 'x': return (p.x - svg.x) * svg.w;
+    case 'y': return (p.y - svg.y) * svg.h;
+    // eslint-disable-next-line no-mixed-operators
+    case 'angle': return Math.atan2(p1.y - p0.y, p1.x - p0.x) * 180 / Math.PI;
+    default:
+      return null;
+  }
+}
 
 class Animate {
   constructor(opts) {
@@ -19,9 +63,25 @@ class Animate {
      */
     this.el = opts.el;
     /**
+     * props
+     */
+    this.props = opts.props || {};
+    /**
      * tweens
      */
-    this.tweens = tweensDecompose(this.el, opts.props || {});
+    if (opts.drawing) {
+      const totalLen = this.el.getTotalLength();
+      this.el.setAttribute('stroke-dasharray', totalLen);
+      this.props = {
+        strokeDashoffset: [totalLen, 0],
+      };
+    }
+    if (opts.movingPath) {
+      console.log(getPathProgress({ el: opts.movingPath }, 0));
+      this.props = {};
+    }
+    this.tweens = tweensDecompose(this.el, this.props || {});
+
     /**
      * opts
      */
