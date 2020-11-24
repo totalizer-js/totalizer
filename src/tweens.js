@@ -4,22 +4,16 @@
 import { isColor, color2rgba } from './color';
 
 const decompose = (str) => {
-  let numbers;
-  let strings;
   if (isColor(str)) {
-    [numbers, strings] = [
-      color2rgba(str),
-      ['rgba(', ',', ',', ',', ')'],
-    ];
-  } else {
-    const val = /^([\d.]+)([a-z%]*)$/i.exec(str);
-    numbers = [parseFloat(val[1])];
-    strings = ['', val[2]];
+    return {
+      numbers: color2rgba(str),
+      strings: ['rgba(', ',', ',', ',', ')'],
+    };
   }
+  const rgx = /[+-]?\d*\.?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/g;
   return {
-    original: str,
-    numbers,
-    strings,
+    numbers: str.match(rgx) ? str.match(rgx).map(Number) : [0],
+    strings: str.split(rgx),
   };
 };
 /**
@@ -39,7 +33,7 @@ function getElementTransforms(el) {
   console.log(transforms);
   return transforms;
 }
-export const tweensDecompose = (el, props) => Object.entries(props).map(([prop, value]) => {
+const tweens = (el, props) => Object.entries(props).map(([prop, value]) => {
   let [type, original] = ['', ''];
   const transformProps = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'perspective', 'matrix', 'matrix3d'];
 
@@ -57,31 +51,12 @@ export const tweensDecompose = (el, props) => Object.entries(props).map(([prop, 
   }
 
   const [originalValue, targetValue] = Array.isArray(value) ? value : [original, value];
-  const from = decompose(originalValue);
-  const to = decompose(targetValue);
+  const from = decompose(originalValue.toString());
+  const to = decompose(targetValue.toString());
 
   return {
     prop, type, from, to,
   };
 });
 
-export const tweensRender = (el, tweens, ratio) => {
-  tweens.forEach((tween) => {
-    let from;
-    let to;
-    let now;
-    let str = tween.to.strings[0];
-    for (let i = 0; i < tween.to.numbers.length; i += 1) {
-      from = tween.from.numbers[i];
-      to = tween.to.numbers[i];
-      now = from + (to - from) * ratio;
-      str += now + tween.to.strings[i + 1];
-    }
-    if (tween.type === 'attribute') {
-      el.setAttribute(tween.prop, str);
-    } else {
-      // eslint-disable-next-line no-param-reassign
-      el.style[tween.prop] = str;
-    }
-  });
-};
+export default tweens;

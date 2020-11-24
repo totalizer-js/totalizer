@@ -1,30 +1,36 @@
 <template>
   <div class="page">
     <h1>Props 测试</h1>
+
     <section>
-      <h2>ATTRIBUTE 【数值】</h2>
+      <h2>ATTRIBUTE 【数值】<span>{ cx: 320, cy: 100, r: 20}</span></h2>
       <svg viewBox="0 0 400 200">
         <circle cx="50" cy="100" r="2" fill="#000" ref="test01_circle" />
       </svg>
     </section>
     <section>
-      <h2>CSS 【数值】+【单位】</h2>
-      <svg viewBox="0 0 400 200"></svg>
-      <div
-        ref="test02_div"
-        style="
-          position: absolute;
-          left: 50px;
-          bottom: 50px;
-          width: 100px;
-          height: 100px;
-          background: #000;
-          border-radius: 5%;
-        "
-      ></div>
+      <h2>
+        CSS 【数值】+【单位】
+        <span>{ left: '250px', borderRadius: '50%' }</span>
+      </h2>
+      <div style="position: relative">
+        <svg viewBox="0 0 400 200"></svg>
+        <div
+          ref="test02_div"
+          style="
+            position: absolute;
+            left: 50px;
+            bottom: 50px;
+            width: 100px;
+            height: 100px;
+            background: #000;
+            border-radius: 5%;
+          "
+        ></div>
+      </div>
     </section>
     <section>
-      <h2>ATTRIBUTE & CSS 【颜色】</h2>
+      <h2>ATTRIBUTE & CSS 【颜色】<span>{ fill: '#08c' }</span></h2>
       <svg viewBox="0 0 400 200">
         <circle cx="120" cy="100" r="50" fill="#fff" ref="test03_circle" />
       </svg>
@@ -47,32 +53,119 @@
       <svg viewBox="0 0 400 200">
         <text x="100" y="100">暂不支持</text>
       </svg>
+      <p>Todo: 支持 transform</p>
     </section>
+
     <h1>动画参数</h1>
+
     <section>
-      <h2>缓动</h2>
-      <svg viewBox="0 0 400 200" ref="eases"></svg>
+      <h2>循环<span>loop</span></h2>
+      <svg viewBox="0 0 400 200">
+        <text x="30" y="48" font-size="12">循环 loop: true</text>
+        <rect x="150" y="40" width="20" height="10" rx="2" ref="loop_rect_1" />
+        <text x="30" y="98" font-size="12">往返 alternate: true</text>
+        <rect x="150" y="90" width="20" height="10" rx="2" ref="loop_rect_2" />
+        <text x="30" y="148" font-size="12">不循环</text>
+        <rect x="150" y="140" width="20" height="10" rx="2" ref="loop_rect_3" />
+      </svg>
     </section>
+    <section>
+      <h2>缓动<span>easing</span></h2>
+      <svg viewBox="0 0 400 200" ref="eases"></svg>
+      <p>Todo: 支持贝塞尔曲线函数和自定义缓动函数</p>
+    </section>
+    <section>
+      <h2>延时<span>delay</span></h2>
+      <svg viewBox="0 0 400 200"></svg>
+      <p>Todo: 支持 endDelay</p>
+    </section>
+
     <h1>SVG 动画</h1>
+
     <section>
       <h2>Path Drawing</h2>
-      <svg viewBox="0 0 400 200" >
-        <path ref="path" fill="none" stroke="currentColor" stroke-width="1" d="M58 80V50.12C57.7 41.6 51.14 35 43 35a15 15 0 0 0 0 30h7.5v15H43a30 30 0 1 1 0-60c16.42 0 29.5 13.23 30 29.89V80H58z"></path>
+      <svg viewBox="0 0 400 200">
+        <path
+          ref="path"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          d="M58 80V50.12C57.7 41.6 51.14 35 43 35a15 15 0 0 0 0 30h7.5v15H43a30 30 0 1 1 0-60c16.42 0 29.5 13.23 30 29.89V80H58z"
+          style="transform: translate(35%, 25%)"
+        ></path>
       </svg>
     </section>
-
     <section>
       <h2>Path Moving</h2>
-      <svg viewBox="0 0 400 200" >
-          <circle cx="20" cy="10" r="5" fill="#08c" ref="moving_circle" />
-          <path ref="moving_path" fill="none" stroke="currentColor" stroke-width="1" d="M58 80V50.12C57.7 41.6 51.14 35 43 35a15 15 0 0 0 0 30h7.5v15H43a30 30 0 1 1 0-60c16.42 0 29.5 13.23 30 29.89V80H58z"></path>
+      <svg viewBox="0 0 400 200">
+        <!-- <circle cx="20" cy="10" r="5" fill="#08c" ref="moving_circle" />
+        <path
+          ref="moving_path"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          d="M58 80V50.12C57.7 41.6 51.14 35 43 35a15 15 0 0 0 0 30h7.5v15H43a30 30 0 1 1 0-60c16.42 0 29.5 13.23 30 29.89V80H58z"
+        ></path> -->
+        <text x="100" y="100">暂不支持</text>
+      </svg>
+    </section>
+    <section>
+      <h2>Path Changing</h2>
+      <svg viewBox="0 0 400 200">
+        <path
+          ref="changing_path"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1"
+          d="M70 24 L119.574 60.369 L100.145 117.631 L50.855 101.631 L3.426 54.369z"
+          style="transform: translate(30%, 20%)"
+        />
       </svg>
     </section>
 
+    <h1>方法</h1>
+
     <section>
-      <h2>Path Changing</h2>
-      <svg viewBox="0 0 400 200" >
+      <h2>play reset pause finish process</h2>
+      <div style="position:relative;">
+      <svg viewBox="0 0 400 200">
+        <svg viewBox="0 0 400 200">
+          <circle cx="50" cy="100" r="2" fill="#000" ref="controll_circle" />
+        </svg>
       </svg>
+      <div class="func">
+        <b class="btn" @click="play">播放</b>
+        <b class="btn" @click="pause">暂停</b>
+        <b class="btn" @click="reset">重置</b>
+        <b class="btn" @click="finish">完成</b>
+
+        <input
+          type="range"
+          @change="inputChange"
+          min="0"
+          max="100"
+          v-model="value"
+          style="position:relative;top:5px;margin-left: 10px;"
+        />
+      </div>
+      </div>
+      <p>Todo: 增加 reverse 方法，规划循环和方向逻辑。</p>
+    </section>
+
+    <h1>后续计划</h1>
+
+    <section>
+      <h2 style="border: none">**</h2>
+      <p>支持增量数值变化 eg. '+50px'</p>
+      <p>支持步长动画 step</p>
+      <p>支持关键帧动画 keyFrames</p>
+      <p>支持动画生命周期，和事件回掉</p>
+      <p>支持Promise</p>
+      <p>
+        支持连续的动画，并设计一个精确的时间引擎（engine），避免连续动画的时间误差
+      </p>
+      <p>设计一个交错动画系统，处理复杂的动画和重叠动画</p>
+      <p>性能，内存，动画对象销毁</p>
     </section>
   </div>
 </template>
@@ -85,15 +178,31 @@ export default {
   data() {
     return {
       ani: '',
+      value: 0,
     };
   },
   mounted() {
+    /**
+     * props 测试
+     */
     this.test01();
     this.test02();
     this.test03();
+    /**
+     * 动画测试
+     */
+    this.loopDemo();
     this.easesDemo();
+    /**
+     * svg 测试
+     */
     this.drawingDemo();
     this.movingDemo();
+    this.changingDemo();
+    /**
+     * 方法 测试
+     */
+    this.controllDemo();
   },
   methods: {
     test01() {
@@ -147,6 +256,38 @@ export default {
       });
       aniDiv.play();
     },
+    loopDemo() {
+      const loop = new Animate({
+        el: this.$refs.loop_rect_1,
+        props: {
+          x: '320',
+        },
+        duration: 1000,
+        delay: 300,
+        loop: true,
+      });
+      loop.play();
+      const alternate = new Animate({
+        el: this.$refs.loop_rect_2,
+        props: {
+          x: '320',
+        },
+        duration: 1000,
+        delay: 300,
+        loop: true,
+        alternate: true,
+      });
+      alternate.play();
+      const noloop = new Animate({
+        el: this.$refs.loop_rect_3,
+        props: {
+          x: '320',
+        },
+        duration: 1000,
+        delay: 300,
+      });
+      noloop.play();
+    },
     easesDemo() {
       [
         'linear',
@@ -196,10 +337,15 @@ export default {
       });
     },
     drawingDemo() {
+      const el = this.$refs.path;
+      const totalLen = el.getTotalLength();
+      el.setAttribute('stroke-dasharray', totalLen);
       const ani = new Animate({
-        el: this.$refs.path,
-        drawing: true,
-        delay: 1000,
+        el,
+        props: {
+          strokeDashoffset: [totalLen, 0],
+        },
+        delay: 300,
         duration: 2000,
         loop: true,
         alternate: true,
@@ -217,11 +363,47 @@ export default {
       });
       ani.play();
     },
+    changingDemo() {
+      const ani = new Animate({
+        el: this.$refs.changing_path,
+        props: {
+          d:
+            'M70 6 L136.574 54.369 L89.145 100.631 L39.855 117.631 L20.426 60.369z',
+        },
+        delay: 300,
+        duration: 1000,
+        loop: true,
+        alternate: true,
+      });
+      ani.play();
+    },
+    controllDemo() {
+      this.ani = new Animate({
+        el: this.$refs.controll_circle,
+        props: {
+          cx: 320,
+          cy: 100,
+          r: 20,
+        },
+        duration: 2000,
+        loop: true,
+        alternate: true,
+      });
+    },
     play() {
       this.ani.play();
     },
     pause() {
       this.ani.pause();
+    },
+    reset() {
+      this.ani.reset();
+    },
+    finish() {
+      this.ani.finish();
+    },
+    inputChange() {
+      this.ani.process(this.value / 100);
     },
   },
 };
@@ -239,7 +421,10 @@ body {
 }
 .page {
   padding-left: 5px;
-  width: 820px;
+  width: 830px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
   background: #f1f1f1;
 }
 .page:after {
@@ -248,16 +433,16 @@ body {
   content: "";
 }
 section {
-  float: left;
   position: relative;
-  margin-bottom: 5px;
-  margin-right: 5px;
+  margin: 5px;
   width: 400px;
-  border: 1px solid #eee;
   background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 h1 {
   padding: 20px;
+  flex-shrink: 1;
+  width: 100%;
   clear: both;
   font-size: 18px;
   line-height: 20px;
@@ -270,18 +455,36 @@ h2 {
   font-weight: normal;
   border-bottom: 1px dashed #ddd;
 }
+h2 span {
+  font-size: 12px;
+  float: right;
+  color: #999;
+}
+p {
+  padding: 10px;
+  color: #333;
+  font-size: 12px;
+  line-height: 18px;
+  color: #999;
+  border-top: 1px dashed #ddd;
+}
+.func {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+}
+.func b {
+  display: block;
+  float: left;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 18px;
+  background: #ddd;
+  cursor: pointer;
+  border-right: 1px solid #fff;
+}
 svg {
   display: block;
-}
-
-div.play {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  background: red;
-}
-
-#circle2 {
-  transition: all ease 3s;
+  background: #fff;
 }
 </style>
