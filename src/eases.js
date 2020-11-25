@@ -1,4 +1,5 @@
 /**
+ * 默认缓动函数
  * 参考：
  * https://github.com/danro/jquery-easing/blob/master/jquery.easing.js
  *

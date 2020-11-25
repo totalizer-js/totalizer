@@ -1,7 +1,3 @@
-/**
- * isColor 判断是否为颜色
- * color2rgba 解析颜色，转换为RGBA数值
- */
 const RE_HEX = /^#([a-f\d])([a-f\d])([a-f\d])$/i;
 const RE_HEX_2 = /^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
 const RE_RGB = /^rgb\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/;
@@ -18,12 +14,20 @@ const hue2rgb = (p, q, t) => {
   if (tc < 2 / 3) return p + (q - p) * (2 / 3 - tc) * 6;
   return p;
 };
-
+/**
+ * 判断参数是否为色值
+ * 色值：hex，rgb，rgba，hsl，hsla
+ * @param {any} s
+ */
 export const isColor = (s) => {
   const str = s.toString().trim();
   return [RE_HEX, RE_HEX_2, RE_RGB, RE_RGBA, RE_HSL, RE_HSLA]
     .some((re) => re.test(str));
 };
+/**
+ * 将色值转换为 rgba 数值
+ * @param {string} color 色值
+ */
 export const color2rgba = (color) => {
   const str = color.trim();
   let rgba;

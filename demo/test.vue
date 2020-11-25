@@ -412,7 +412,7 @@ export default {
 <style>
 body {
   padding: 20px;
-  background: #fff;
+  background: #f1f1f1;
 }
 * {
   padding: 0;
@@ -425,7 +425,7 @@ body {
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
-  background: #f1f1f1;
+  /* background: #08c; */
 }
 .page:after {
   display: table;

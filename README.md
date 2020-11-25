@@ -7,35 +7,25 @@
 轻量级DOM & SVG 动画引擎
 
 
+<img src="./design.svg" />
 
 ## 设计接口: 调用方式，参数，方法
 
 ```
-Animate(target, attrs, options)
+new Animate(options)
 ```
 
 ·
 
 ```
 const move = Animate(
-    targets,
     {
-        transformX: [0,100]   //  需要改变的属性值
-    },
-    {
+        el: '',
+        props:{},
         duration: 5000, // 时长
         loop: true,  // 是否循环
         direction: 'alternate',     // 方向，是否逆向
-        easing: 'easeInOutCirc',    // 缓动
-        render: (ani)=>{
-        		// 自定渲染函数
-        },
-        begin: (ani) => { 
-            // 开始触发事件
-        },         
-        complete: (ani) => {
-            // 结束触发事件
-        }         
+        easing: 'easeInOutCirc',    // 缓动    
     }
 )
 ```
@@ -52,17 +42,17 @@ const move = Animate(
 
 ### Options 动画设置
 
-| 参数      | 类型               |      |
-| --------- | ------------------ | ---- |
-| duration  | Number             |      |
-| loop      | Boolean            |      |
-| direction | String             |      |
-| easing    | String \| Function |      |
-| auto      | Boolean            |      |
-| begin     | Function           |      |
-| complete  | Function           |      |
-|           |                    |      |
-|           |                    |      |
+| 参数      | 类型               |     |
+| --------- | ------------------ | --- |
+| duration  | Number             |     |
+| loop      | Boolean            |     |
+| direction | String             |     |
+| easing    | String \| Function |     |
+| auto      | Boolean            |     |
+| begin     | Function           |     |
+| complete  | Function           |     |
+|           |                    |     |
+|           |                    |     |
 
 
 
@@ -70,13 +60,13 @@ const move = Animate(
 
 
 
-| 方法     |      | ---  |
-| -------- | ---- | ---- |
-| play     |      |      |
-| pause    |      |      |
-| reset    |      |      |
-| complete |      |      |
-| process  |      |      |
+| 方法     |     | --- |
+| -------- | --- | --- |
+| play     |     |     |
+| pause    |     |     |
+| reset    |     |     |
+| complete |     |     |
+| process  |     |     |
 
 
 
