@@ -21,7 +21,9 @@ new Animate(options)
 const move = Animate(
     {
         el: '',
-        props:{},
+        props:{
+            x
+        },
         duration: 5000, // 时长
         loop: true,  // 是否循环
         direction: 'alternate',     // 方向，是否逆向

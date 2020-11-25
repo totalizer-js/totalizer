@@ -1,9 +1,9 @@
 /**
  * 默认缓动函数
- * 参考：
+ * reference:
  * https://github.com/danro/jquery-easing/blob/master/jquery.easing.js
  *
- * 使用方法, 缓动柯里化
+ * usage:
  * eases[easeName](easeArgument)(ratio)
  *
  * eg. eases['easeOutElastic'](1,0.5)(0.5) === 0.96875
