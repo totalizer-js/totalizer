@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import engine from './engine';
 import eases from './eases';
-import render from './render';
 import tweens from './tweens';
 
 const STATUS = {
@@ -60,8 +59,29 @@ class Animate {
 
   render() {
     const cur = this.reverse ? (this.duration - this.cur) : this.cur;
+    const process = cur / this.duration;
     const ratio = this.easing(cur / this.duration);
-    render(this.el, this.tweens, ratio);
+
+    let result = '';
+    this.tweens.forEach((tween) => {
+      if (tween.fn) {
+        result = tween.fn(process);
+      } else {
+        [result] = tween.to.strings;
+        for (let i = 0; i < tween.to.numbers.length; i += 1) {
+          const from = tween.from.numbers[i];
+          const to = tween.to.numbers[i];
+          const now = from + (to - from) * ratio;
+          result += now + tween.to.strings[i + 1];
+        }
+      }
+      if (tween.type === 'attribute') {
+        this.el.setAttribute(tween.prop, result);
+      } else {
+      // eslint-disable-next-line no-param-reassign
+        this.el.style[tween.prop] = result;
+      }
+    });
   }
 
   tick(t) {
@@ -122,8 +142,8 @@ class Animate {
     engine.remove(this);
   }
 
-  process(ratio) {
-    const val = Math.max(Math.min(ratio, 1), 0);
+  process(process) {
+    const val = Math.max(Math.min(process, 1), 0);
     this.cur = val * this.duration;
   }
 }

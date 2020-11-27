@@ -7,6 +7,33 @@
 轻量级DOM & SVG 动画引擎
 
 
+命令式？？
+声明式？？
+面向对象？？
+
+
+
+属性类型：
+* attribute
+* css
+* transform
+* text
+
+值类型：
+* 数值
+* 颜色
+* transform值
+
+值转化：
+type:'',
+prop:'',
+from: {numbers,strings},
+to:{numbers,strings},
+
+
+
+
+
 <img src="./design.svg" />
 
 ## 设计接口: 调用方式，参数，方法

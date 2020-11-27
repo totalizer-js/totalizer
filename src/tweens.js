@@ -20,6 +20,12 @@ const decompose = (str) => {
  * tweens
  * @param {*} el 目标dom节点
  * @param {*} props 变化的属性值
+ * {
+ *  x: 10, // 目标值
+ *  y: [100,200],// 初始值 - 目标值
+ *  fill: '#ddd', // 目标颜色值
+ *  cx: (process) => {return process * 25}, // 自定义目标值函数
+ * }
  * @return [prop, type, from, to]
  */
 
@@ -34,9 +40,12 @@ function getElementTransforms(el) {
   return transforms;
 }
 const tweens = (el, props) => Object.entries(props).map(([prop, value]) => {
-  let [type, original] = ['', ''];
+  let original = '';
+  let [type, from, to, fn] = ['', null, null, null];
+  /**
+   * 分析属性类型
+   */
   const transformProps = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'perspective', 'matrix', 'matrix3d'];
-
   if (transformProps.includes(prop)) {
     type = 'transform';
     const a = getElementTransforms(el).get(prop);
@@ -49,13 +58,19 @@ const tweens = (el, props) => Object.entries(props).map(([prop, value]) => {
     const uppercasePropName = prop.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
     original = el.style[prop] || getComputedStyle(el).getPropertyValue(uppercasePropName) || 0;
   }
-
+  /**
+   * 分析值类型
+   */
   const [originalValue, targetValue] = Array.isArray(value) ? value : [original, value];
-  const from = decompose(originalValue.toString());
-  const to = decompose(targetValue.toString());
+  if (typeof value === 'function') {
+    fn = value;
+  } else {
+    from = decompose(originalValue.toString());
+    to = decompose(targetValue.toString());
+  }
 
   return {
-    prop, type, from, to,
+    prop, type, from, to, fn,
   };
 });
 
