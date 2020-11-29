@@ -29,17 +29,7 @@ const decompose = (str) => {
  * @return [prop, type, from, to]
  */
 
-function getElementTransforms(el) {
-  const str = el.style.transform || '';
-  console.log(str);
-  const reg = /(\w+)\(([^)]*)\)/g;
-  const transforms = new Map();
-  // eslint-disable-next-line no-cond-assign
-  let m; while (m = reg.exec(str)) transforms.set(m[1], m[2]);
-  console.log(transforms);
-  return transforms;
-}
-const tweens = (el, props) => Object.entries(props).map(([prop, value]) => {
+const tweens = (el, props, transform) => Object.entries(props).map(([prop, value]) => {
   let original = '';
   let [type, from, to, fn] = ['', null, null, null];
   /**
@@ -48,8 +38,7 @@ const tweens = (el, props) => Object.entries(props).map(([prop, value]) => {
   const transformProps = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'perspective', 'matrix', 'matrix3d'];
   if (transformProps.includes(prop)) {
     type = 'transform';
-    const a = getElementTransforms(el).get(prop);
-    console.log(a);
+    original = transform.get(prop) || (prop.includes('scale') ? 1 : 0);
   } else if (el.getAttribute(prop) !== null) {
     type = 'attribute';
     original = el.getAttribute(prop);

@@ -52,8 +52,6 @@ const move = Animate(
             x
         },
         duration: 5000, // 时长
-        loop: true,  // 是否循环
-        direction: 'alternate',     // 方向，是否逆向
         easing: 'easeInOutCirc',    // 缓动    
     }
 )

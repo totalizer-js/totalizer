@@ -51,7 +51,7 @@
     <section>
       <h2>TRANSFORM</h2>
       <svg viewBox="0 0 400 200">
-        <text x="100" y="100">暂不支持</text>
+        <rect width="20" height="10" rx="2" ref="transform_rect"/>
       </svg>
       <p>Todo: 支持 transform</p>
     </section>
@@ -98,15 +98,14 @@
     <section>
       <h2>Path Moving</h2>
       <svg viewBox="0 0 400 200">
-        <!-- <circle cx="20" cy="10" r="5" fill="#08c" ref="moving_circle" />
         <path
           ref="moving_path"
           fill="none"
           stroke="currentColor"
           stroke-width="1"
           d="M58 80V50.12C57.7 41.6 51.14 35 43 35a15 15 0 0 0 0 30h7.5v15H43a30 30 0 1 1 0-60c16.42 0 29.5 13.23 30 29.89V80H58z"
-        ></path> -->
-        <text x="100" y="100">暂不支持</text>
+        ></path>
+        <circle cx="20" cy="10" r="5" fill="#08c" ref="moving_circle" />
       </svg>
     </section>
     <section>
@@ -188,6 +187,7 @@ export default {
     this.test01();
     this.test02();
     this.test03();
+    this.test04();
     /**
      * 动画测试
      */
@@ -256,6 +256,23 @@ export default {
       });
       aniDiv.play();
     },
+    test04() {
+      const ani = new Animate({
+        el: this.$refs.transform_rect,
+        props: {
+          translateX: ['50px', '200px'],
+          translateY: ['50px', '100px'],
+          scaleX: 2,
+          scaleY: 2,
+          rotateZ: '80deg',
+        },
+        duration: 2000,
+        loop: true,
+        alternate: true,
+      });
+      ani.play();
+    },
+
     loopDemo() {
       const loop = new Animate({
         el: this.$refs.loop_rect_1,
@@ -353,13 +370,21 @@ export default {
       ani.play();
     },
     movingDemo() {
+      const el = this.$refs.moving_circle;
+
+      const path = this.$refs.moving_path;
+      const totalLen = path.getTotalLength();
+
       const ani = new Animate({
-        el: this.$refs.moving_circle,
-        movingPath: this.$refs.moving_path,
-        delay: 1000,
-        duration: 2000,
+        el,
+        props: {
+          cx: (process) => path.getPointAtLength(totalLen * process).x,
+          cy: (process) => path.getPointAtLength(totalLen * process).y,
+        },
+        delay: 0,
+        duration: 5000,
         loop: true,
-        alternate: true,
+        //   alternate: true,
       });
       ani.play();
     },
@@ -487,4 +512,5 @@ svg {
   display: block;
   background: #fff;
 }
+
 </style>

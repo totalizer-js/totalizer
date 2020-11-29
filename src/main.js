@@ -11,6 +11,14 @@ const STATUS = {
   FINISH: 4,
 };
 
+function getElementTransforms(el) {
+  const str = el.style.transform || '';
+  const reg = /(\w+)\(([^)]*)\)/g;
+  const transforms = new Map();
+  // eslint-disable-next-line no-cond-assign
+  let m; while (m = reg.exec(str)) transforms.set(m[1], m[2]);
+  return transforms;
+}
 class Animate {
   constructor(opts) {
     /**
@@ -21,10 +29,12 @@ class Animate {
      * props
      */
     this.props = opts.props || {};
+
     /**
      * tweens
      */
-    this.tweens = tweens(this.el, this.props || {});
+    this.transform = getElementTransforms(this.el);
+    this.tweens = tweens(this.el, this.props || {}, this.transform);
 
     /**
      * opts
@@ -75,7 +85,12 @@ class Animate {
           result += now + tween.to.strings[i + 1];
         }
       }
-      if (tween.type === 'attribute') {
+      if (tween.type === 'transform') {
+        this.transform.set(tween.prop, result);
+        let str = '';
+        this.transform.forEach((value, prop) => { str += `${prop}(${value}) `; });
+        this.el.style.transform = str;
+      } else if (tween.type === 'attribute') {
         this.el.setAttribute(tween.prop, result);
       } else {
       // eslint-disable-next-line no-param-reassign
