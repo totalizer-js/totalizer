@@ -49,15 +49,39 @@ const move = Animate(
     {
         el: '',
         props:{
-            x
+            x:[10,100],
+            y:[100,200],
         },
         duration: 5000, // 时长
         easing: 'easeInOutCirc',    // 缓动    
+        delay: 1000
     }
 )
 ```
 
+const move = Animate(target)
+.set({
 
+})
+.play();
+
+
+move.reset();
+move.finish();
+move.clear();
+move.pause();
+move.reverse().play();
+move.loop(1);
+
+
+
+
+重新定义动画属性：
+
+move.reset({
+    x:'',
+    y:''
+})
 
 ### Target 目标元素
 
