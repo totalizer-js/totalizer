@@ -2,6 +2,7 @@
  * 解析属性，转换为统一动画变量
  */
 import { isColor, color2rgba } from './color';
+import getElementTransform from './transform';
 
 const decompose = (str) => {
   if (isColor(str)) {
@@ -16,22 +17,14 @@ const decompose = (str) => {
     strings: str.split(rgx),
   };
 };
-/**
- * tweens
- * @param {*} el 目标dom节点
- * @param {*} props 变化的属性值
- * {
- *  x: 10, // 目标值
- *  y: [100,200],// 初始值 - 目标值
- *  fill: '#ddd', // 目标颜色值
- *  cx: (process) => {return process * 25}, // 自定义目标值函数
- * }
- * @return [prop, type, from, to]
- */
 
-const tweens = (el, props, transform) => Object.entries(props).map(([prop, value]) => {
+const tweens = (opts) => Object.entries(opts.props).map(([prop, value]) => {
+  const {
+    el, delay, endDelay, duration, easing,
+  } = opts;
   let original = '';
-  let [type, from, to, fn] = ['', null, null, null];
+  let [type, from, to, fn, str] = ['', null, null, null, null];
+  const transform = getElementTransform(el);
   /**
    * 分析属性类型
    */
@@ -54,12 +47,25 @@ const tweens = (el, props, transform) => Object.entries(props).map(([prop, value
   if (typeof value === 'function') {
     fn = value;
   } else {
-    from = decompose(originalValue.toString());
-    to = decompose(targetValue.toString());
+    const oFrom = decompose(originalValue.toString());
+    const oTo = decompose(targetValue.toString());
+    from = oFrom.numbers;
+    to = oTo.numbers;
+    str = oTo.strings.length ? oTo.strings : oFrom.strings;
   }
 
   return {
-    prop, type, from, to, fn,
+    el,
+    delay,
+    endDelay,
+    duration,
+    easing,
+    prop,
+    type,
+    from,
+    to,
+    str,
+    fn,
   };
 });
 

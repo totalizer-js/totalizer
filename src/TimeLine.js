@@ -2,7 +2,7 @@
 import engine from './engine';
 import eases from './eases';
 import getElementTransform from './transform';
-import tweenFactory from './tweenFactory';
+import tweenFactory from './tweens';
 
 class TimeLine {
   constructor(options) {
