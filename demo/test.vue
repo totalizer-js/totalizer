@@ -169,9 +169,8 @@
   </div>
 </template>
 <script>
-import Animate from '../src/main';
-// import anime from '../anime';
-// import { tweensDecompose } from '../src/tweens';
+// import Animate from '../src/main';
+import TimeLine from '../src/TimeLine';
 
 export default {
   data() {
@@ -206,7 +205,7 @@ export default {
   },
   methods: {
     test01() {
-      const ani = new Animate({
+      const ani = new TimeLine({
         el: this.$refs.test01_circle,
         props: {
           cx: 320,
@@ -214,50 +213,39 @@ export default {
           r: 20,
         },
         duration: 2000,
-        loop: true,
-        alternate: true,
       });
-      ani.play();
+      ani.loop().alternate().play();
     },
     test02() {
-      const ani = new Animate({
+      const ani = new TimeLine({
         el: this.$refs.test02_div,
         props: {
           left: '250px',
           borderRadius: '50%',
         },
         duration: 2000,
-        loop: true,
-        alternate: true,
       });
-      ani.play();
+      ani.loop().alternate().play();
     },
     test03() {
-      const ani = new Animate({
+      const ani = new TimeLine({
         el: this.$refs.test03_circle,
         props: {
-          // r: 50,
           fill: '#08c',
         },
         duration: 2000,
-        loop: true,
-        alternate: true,
       });
-      ani.play();
-      const aniDiv = new Animate({
+      ani.add({
         el: this.$refs.test03_div,
         props: {
           background: '#f60',
-          // borderRadius: '50%',
         },
         duration: 2000,
-        loop: true,
-        alternate: true,
       });
-      aniDiv.play();
+      ani.loop().alternate().play();
     },
     test04() {
-      const ani = new Animate({
+      const ani = new TimeLine({
         el: this.$refs.transform_rect,
         props: {
           translateX: ['50px', '200px'],
@@ -267,35 +255,32 @@ export default {
           rotateZ: '80deg',
         },
         duration: 2000,
-        loop: true,
-        alternate: true,
       });
-      ani.play();
+      ani.loop().alternate().play();
     },
 
     loopDemo() {
-      const loop = new Animate({
+      const loop = new TimeLine({
         el: this.$refs.loop_rect_1,
         props: {
           x: '320',
         },
         duration: 1000,
         delay: 300,
-        loop: true,
+        endDelay: 300,
       });
-      loop.play();
-      const alternate = new Animate({
+      loop.loop().play();
+      const alternate = new TimeLine({
         el: this.$refs.loop_rect_2,
         props: {
           x: '320',
         },
         duration: 1000,
         delay: 300,
-        loop: true,
-        alternate: true,
+        endDelay: 300,
       });
-      alternate.play();
-      const noloop = new Animate({
+      alternate.loop().alternate().play();
+      const noloop = new TimeLine({
         el: this.$refs.loop_rect_3,
         props: {
           x: '320',
@@ -337,18 +322,15 @@ export default {
         text.innerHTML = ease;
         text.setAttribute('style', 'font-size:12px;line-height:20px;');
 
-        const ani = new Animate({
+        const ani = new TimeLine({
           el: rect,
           props: {
             x: '320',
           },
           duration: 2000,
-          delay: 1000,
           easing: ease,
-          loop: true,
-          alternate: true,
         });
-        ani.play();
+        ani.loop().alternate().play();
         this.$refs.eases.appendChild(text);
         this.$refs.eases.appendChild(rect);
       });
@@ -357,17 +339,15 @@ export default {
       const el = this.$refs.path;
       const totalLen = el.getTotalLength();
       el.setAttribute('stroke-dasharray', totalLen);
-      const ani = new Animate({
+      const ani = new TimeLine({
         el,
         props: {
           strokeDashoffset: [totalLen, 0],
         },
         delay: 300,
         duration: 2000,
-        loop: true,
-        alternate: true,
       });
-      ani.play();
+      ani.loop().alternate().play();
     },
     movingDemo() {
       const el = this.$refs.moving_circle;
@@ -375,7 +355,7 @@ export default {
       const path = this.$refs.moving_path;
       const totalLen = path.getTotalLength();
 
-      const ani = new Animate({
+      const ani = new TimeLine({
         el,
         props: {
           cx: (process) => path.getPointAtLength(totalLen * process).x,
@@ -384,12 +364,11 @@ export default {
         delay: 0,
         duration: 5000,
         loop: true,
-        //   alternate: true,
       });
-      ani.play();
+      ani.loop().alternate().play();
     },
     changingDemo() {
-      const ani = new Animate({
+      const ani = new TimeLine({
         el: this.$refs.changing_path,
         props: {
           d:
@@ -397,22 +376,19 @@ export default {
         },
         delay: 300,
         duration: 1000,
-        loop: true,
-        alternate: true,
       });
-      ani.play();
+      ani.loop().alternate().play();
     },
     controllDemo() {
-      this.ani = new Animate({
+      this.ani = new TimeLine({
         el: this.$refs.controll_circle,
         props: {
           cx: 320,
           cy: 100,
           r: 20,
         },
+        endDelay: 1000,
         duration: 2000,
-        loop: true,
-        alternate: true,
       });
     },
     play() {

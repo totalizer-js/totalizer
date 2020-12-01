@@ -1,5 +1,17 @@
 # Dom-Animate
 
+补间动画
+序列帧动画
+svg动画
+3D动画
+骨骼动画
+
+
+动画库：
+https://juejin.cn/post/6844903830098804743
+
+引擎：
+http://www.fly63.com/nav/more/12
 
 
 ## 框架定位:
@@ -52,19 +64,23 @@ const move = Animate(
             x:[10,100],
             y:[100,200],
         },
+        step: 5,
         duration: 5000, // 时长
         easing: 'easeInOutCirc',    // 缓动    
         delay: 1000
     }
 )
 ```
-
-const move = Animate(target)
-.set({
-
-})
-.play();
-
+```
+el:'',
+keyFrames:[
+    {x:,y:}
+    {x:,y:}
+    {x:,y:}
+],
+duration: ---,
+delay: 
+```
 
 move.reset();
 move.finish();
@@ -83,6 +99,18 @@ move.reset({
     y:''
 })
 
+
+
+
+const ani = new Animate();
+
+ani.add({
+    el:'',
+    props:{},
+    delay:'',
+})
+
+ani.play();
 ### Target 目标元素
 
 
