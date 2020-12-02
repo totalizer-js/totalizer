@@ -1,10 +1,9 @@
 <template>
   <div>
     <section>
-      <h2>ATTRIBUTE 【数值】<span>{ cx: 320, cy: 100, r: 20}</span></h2>
       <svg viewBox="0 0 400 200">
-        <circle cx="50" cy="100" r="2" fill="#000" ref="test01_circle" />
-        <circle cx="200" cy="100" r="10" fill="#000" ref="test02_circle" />
+        <circle cx="50" cy="100" r="9" fill="#000" ref="test01_circle" />
+        <!-- <circle cx="200" cy="100" r="10" fill="#000" ref="test02_circle" /> -->
       </svg>
 
       <button @click="play">play</button>
@@ -27,23 +26,31 @@ export default {
     this.ani.add({
       el: this.$refs.test01_circle,
       props: {
-        cx: 200,
-        cy: 100,
-        r: 9,
+        cx: [50, 200],
+        // r: [2, 9],
       },
       delay: 0,
       duration: 1000,
     });
     this.ani.add({
-      el: this.$refs.test02_circle,
+      el: this.$refs.test01_circle,
       props: {
-        cx: 320,
-        cy: 100,
-        r: 20,
+        cx: [200, 300],
+        // r: [9, 20],
       },
       delay: 1000,
       duration: 1000,
     });
+    // this.ani.add({
+    //   el: this.$refs.test02_circle,
+    //   props: {
+    //     cx: 320,
+    //     cy: 100,
+    //     r: 20,
+    //   },
+    //   delay: 1000,
+    //   duration: 1000,
+    // });
     this.ani.loop().alternate().play();
   },
   methods: {
