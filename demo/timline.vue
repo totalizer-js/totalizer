@@ -27,18 +27,17 @@ export default {
       el: this.$refs.test01_circle,
       props: {
         cx: [50, 200],
-        // r: [2, 9],
       },
-      delay: 0,
+      delay: 1000,
       duration: 1000,
     });
     this.ani.add({
       el: this.$refs.test01_circle,
       props: {
-        cx: [200, 300],
-        // r: [9, 20],
+        cx: [300, 400],
       },
-      delay: 1000,
+      delay: 3000,
+      endDelay: 1000,
       duration: 1000,
     });
     // this.ani.add({
@@ -52,6 +51,7 @@ export default {
     //   duration: 1000,
     // });
     this.ani.loop().alternate().play();
+    window.ani = this.ani;
   },
   methods: {
     play() {

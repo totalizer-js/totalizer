@@ -4,9 +4,17 @@ import eases from './eases';
 import getElementTransform from './transform';
 import tweenFactory from './tweens';
 
+const isHighPriority = (old, current) => {
+  if (current[0] > 0 || current[0] > old[0]) return true;
+
+  if (current[1] >= old[1]) return true;
+  return false;
+};
+
 class TimeLine {
   constructor(options) {
     this.tweens = [];
+    this.renders = new Map();
     /**
      * time
      */
@@ -40,42 +48,94 @@ class TimeLine {
 
   render() {
     this.tweens.forEach((tween) => {
-      let process;
-      const cur = this.isReverse ? (this.dur - this.cur) : this.cur;
-
-      if (cur <= tween.delay) process = 0;
-      else if (cur <= tween.delay + tween.duration) {
-        process = (cur - tween.delay) / tween.duration;
-      } else process = 1;
-
-      const ratio = eases[tween.easing]()(process);
-
-      let result = '';
-      const { style } = tween.el;
-      if (tween.fn) {
-        result = tween.fn(process);
-      } else {
-        [result] = tween.str;
-        for (let i = 0; i < tween.to.length; i += 1) {
-          const from = tween.from[i];
-          const to = tween.to[i];
-          const now = from + (to - from) * ratio;
-          result += now + tween.str[i + 1];
-        }
-      }
-
-      if (tween.type === 'transform') {
-        const transform = getElementTransform(tween.el);
-        transform.set(tween.prop, result);
-        let str = '';
-        transform.forEach((value, prop) => { str += `${prop}(${value}) `; });
-        style.transform = str;
-      } else if (tween.type === 'attribute') {
-        tween.el.setAttribute(tween.prop, result);
-      } else {
-        style[tween.prop] = result;
-      }
+      this._setRender(tween);
     });
+    this._runRender();
+  }
+
+  _setRender(tween) {
+    let process;
+    const cur = this.isReverse ? (this.dur - this.cur) : this.cur;
+    let level;
+    if (cur < tween.delay) {
+      process = 0;
+      level = [-1, cur - tween.delay];
+    } else if (cur <= tween.delay + tween.duration) {
+      process = (cur - tween.delay) / tween.duration;
+      level = [1, 0];
+    } else {
+      process = 1;
+      level = [0, tween.delay + tween.duration - cur];
+    }
+
+    const ratio = eases[tween.easing]()(process);
+
+    let result = '';
+    if (tween.fn) {
+      result = tween.fn(process);
+    } else {
+      [result] = tween.str;
+      for (let i = 0; i < tween.to.length; i += 1) {
+        const from = tween.from[i];
+        const to = tween.to[i];
+        const now = from + (to - from) * ratio;
+        result += now + tween.str[i + 1];
+      }
+    }
+
+    let renderCash = this.renders.get(tween.el);
+    if (renderCash) {
+      const renderItem = renderCash.get(tween.prop);
+      if (renderItem) {
+        if (isHighPriority(renderItem.level, level)) {
+          renderCash.set(tween.prop, {
+            el: tween.el,
+            type: tween.type,
+            prop: tween.prop,
+            result,
+            level,
+          });
+        }
+      } else {
+        renderCash.set(tween.prop, {
+          el: tween.el,
+          type: tween.type,
+          prop: tween.prop,
+          result,
+          level,
+        });
+      }
+    } else {
+      renderCash = new Map();
+      renderCash.set(tween.prop, {
+        el: tween.el,
+        type: tween.type,
+        prop: tween.prop,
+        result,
+        level,
+      });
+      this.renders.set(tween.el, renderCash);
+    }
+  }
+
+  _runRender() {
+    this.renders.forEach((render, el) => {
+      render.forEach((tween) => {
+        const { style } = el;
+        if (tween.type === 'transform') {
+          const transform = getElementTransform(tween.el);
+          transform.set(tween.prop, tween.result);
+          let str = '';
+          transform.forEach((value, prop) => { str += `${prop}(${value}) `; });
+          style.transform = str;
+        } else if (tween.type === 'attribute') {
+          tween.el.setAttribute(tween.prop, tween.result);
+        } else {
+          style[tween.prop] = tween.result;
+        }
+      });
+    });
+    this.renders = new Map();
   }
 
   tick(t) {
@@ -128,9 +188,7 @@ class TimeLine {
   }
 
   process(val) {
-    if (val) {
-      this.cur = this.dur * Math.max(0, Math.min(val, 1));
-    }
+    this.cur = this.dur * Math.max(0, Math.min(val, 1));
     return this;
   }
 
@@ -146,7 +204,7 @@ class TimeLine {
   finish() {
     this.last = 0;
     this.start = 0;
-    this.cur = this.duration;
+    this.cur = this.dur;
 
     engine.remove(this);
     return this;

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- <svg viewBox="0 0 1024 1024">
+    <svg viewBox="0 0 1024 1024">
       <g ref="g"></g>
-    </svg> -->
+    </svg>
     <svg viewBox="0 0 1024 1024">
       <rect x="100" y="100" width="200" height="100" fill="#ddd" />
       <rect x="100" y="100" width="0" height="100" fill="#b1d3dc" ref="rect1" />
@@ -66,62 +66,64 @@ import TimeLine from '../src/TimeLine';
 
 export default {
   mounted() {
-    // const ani = new TimeLine();
-    // const rects = [];
-    // for (let i = 0; i < 16; i += 1) {
-    //   rects[i] = [];
-    //   for (let j = 0; j < 16; j += 1) {
-    //     const rect = document.createElementNS(
-    //       'http://www.w3.org/2000/svg',
-    //       'rect',
-    //     );
-    //     rect.setAttribute('x', i * 64 + 2);
-    //     rect.setAttribute('y', j * 64 + 2);
-    //     rect.setAttribute('width', 60);
-    //     rect.setAttribute('height', 60);
-    //     rect.setAttribute('rx', 10);
+    const rects = [];
+    const num = 16;
+    for (let i = 0; i < num; i += 1) {
+      rects[i] = [];
+      for (let j = 0; j < num; j += 1) {
+        const rect = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'rect',
+        );
+        rect.setAttribute('x', i * 64 + 2 + 30);
+        rect.setAttribute('y', j * 64 + 2 + 30);
+        rect.setAttribute('width', 10);
+        rect.setAttribute('height', 10);
+        rect.setAttribute('rx', 10);
 
-    //     rect.setAttribute('fill', '#08c');
-    //     rects[i][j] = rect;
+        rect.setAttribute('fill', '#08c');
+        rects[i][j] = rect;
 
-    //     this.$refs.g.appendChild(rect);
-    //   }
-    // }
+        this.$refs.g.appendChild(rect);
+      }
+    }
+    const ani = new TimeLine();
+    for (let i = 0; i < num; i += 1) {
+      for (let j = 0; j < num; j += 1) {
+        ani.add({
+          el: rects[i][j],
+          props: {
+            width: [10, 60],
+            height: [10, 60],
+            x: [i * 64 + 2 + 30, i * 64 + 2],
+            y: [j * 64 + 2 + 30, j * 64 + 2],
+          },
+          duration: 500,
+          delay: (Math.abs(i - 8) + Math.abs(j - 8)) * 100,
+        });
+      }
+    }
 
-    // for (let i = 0; i < 16; i += 1) {
-    //   for (let j = 0; j < 16; j += 1) {
-    //     ani.add({
-    //       el: rects[i][j],
-    //       props: {
-    //         width: [10, 60],
-    //         height: [10, 60],
-    //         x: [i * 64 + 2 + 30, i * 64 + 2],
-    //         y: [j * 64 + 2 + 30, j * 64 + 2],
-    //       },
-    //       duration: 500,
-    //       delay: (Math.abs(i - 8) + Math.abs(j - 8)) * 100,
-    //     });
-    //   }
-    // }
-
-    // const { dur } = ani;
-    // for (let i = 0; i < 16; i += 1) {
-    //   for (let j = 0; j < 16; j += 1) {
-    //     ani.add({
-    //       el: rects[i][j],
-    //       props: {
-    //         width: [60, 10],
-    //         height: [60, 10],
-    //         x: [i * 64 + 2, i * 64 + 2 + 30],
-    //         y: [j * 64 + 2, j * 64 + 2 + 30],
-    //       },
-    //       duration: 500,
-    //       delay: dur,
-    //       endDelay: 500,
-    //     });
-    //   }
-    // }
-    // ani.loop().alternate().play();
+    const { dur } = ani;
+    for (let i = 0; i < num; i += 1) {
+      for (let j = 0; j < num; j += 1) {
+        ani.add({
+          el: rects[i][j],
+          props: {
+            width: [60, 10],
+            height: [60, 10],
+            x: [i * 64 + 2, i * 64 + 2 + 30],
+            y: [j * 64 + 2, j * 64 + 2 + 30],
+          },
+          duration: 500,
+          delay: dur,
+          endDelay: 500,
+        });
+      }
+    }
+    ani.loop().alternate().play();
+    // ani.process(1);
+    window.ani = ani;
     this.line();
   },
   methods: {
