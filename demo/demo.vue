@@ -104,7 +104,7 @@ export default {
       }
     }
 
-    const { dur } = ani;
+    const { duration } = ani;
     for (let i = 0; i < num; i += 1) {
       for (let j = 0; j < num; j += 1) {
         ani.add({
@@ -116,7 +116,7 @@ export default {
             y: [j * 64 + 2, j * 64 + 2 + 30],
           },
           duration: 500,
-          delay: dur,
+          delay: duration,
           endDelay: 500,
         });
       }

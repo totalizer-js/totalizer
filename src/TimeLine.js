@@ -22,7 +22,7 @@ class TimeLine {
     this.start = 0;
     this.last = 0;
     this._cur = 0;
-    this.dur = 0;
+    this.duration = 0;
 
     /**
      * status
@@ -55,7 +55,7 @@ class TimeLine {
 
   _setRender(tween) {
     let process;
-    const cur = this.isReverse ? (this.dur - this.cur) : this.cur;
+    const cur = this.isReverse ? (this.duration - this.cur) : this.cur;
     let level;
     if (cur < tween.delay) {
       process = 0;
@@ -143,12 +143,12 @@ class TimeLine {
       this.start = t;
     }
     this.now = t - this.start + this.last;
-    if (this.now <= this.dur) {
+    if (this.now <= this.duration) {
       this.cur = this.now;
     } else {
       this.loopTimes -= 1;
       if (this.loopTimes > 0) {
-        this.cur = this.dur;
+        this.cur = this.duration;
         this.start = 0;
         this.last = 0;
         if (this.isAlternate) this.isReverse = !this.isReverse;
@@ -188,7 +188,7 @@ class TimeLine {
   }
 
   process(val) {
-    this.cur = this.dur * Math.max(0, Math.min(val, 1));
+    this.cur = this.duration * Math.max(0, Math.min(val, 1));
     return this;
   }
 
@@ -204,7 +204,7 @@ class TimeLine {
   finish() {
     this.last = 0;
     this.start = 0;
-    this.cur = this.dur;
+    this.cur = this.duration;
 
     engine.remove(this);
     return this;
@@ -220,7 +220,7 @@ class TimeLine {
       ...options,
     };
 
-    this.dur = Math.max(opts.duration + opts.delay + opts.endDelay, this.dur);
+    this.duration = Math.max(opts.duration + opts.delay + opts.endDelay, this.duration);
 
     const newTweens = tweenFactory(opts);
     this.tweens.push(...newTweens);
