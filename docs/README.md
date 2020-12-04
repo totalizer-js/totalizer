@@ -1,2 +1,7 @@
-# Totalizer
+<!-- # Totalizer -->
+
+<ClientOnly>
+  <Totalizer/>
+</ClientOnly>
+
 
