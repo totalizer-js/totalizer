@@ -33,3 +33,9 @@ animation.add({
 // 设置循环，并开始播放
 animation.loop().play();
 ```
+
+<ClientOnly>
+  <Started/>
+</ClientOnly>
+
+
