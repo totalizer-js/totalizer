@@ -1,5 +1,5 @@
 module.exports = {
-    title: 'Time Axis',
+    title: 'Totalizer',
     description: 'Just playing around',
     themeConfig: {
         search: false,

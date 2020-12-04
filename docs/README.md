@@ -1,2 +1,2 @@
-# Time Axis 
+# Totalizer
 
