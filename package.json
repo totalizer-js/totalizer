@@ -1,8 +1,8 @@
 {
-  "name": "svg-beta",
-  "version": "0.0.0",
+  "name": "time-axis",
+  "version": "0.0.1-beta",
   "description": "",
-  "main": "index.js",
+  "main": "./src/TimeLine.js",
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
