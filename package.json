@@ -10,7 +10,7 @@
     "docs:build": "vuepress build docs"
   },
   "keywords": [
-    "svg"
+    "animation"
   ],
   "author": "Z8264",
   "license": "MIT",
@@ -30,6 +30,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/svgcamp/svg-arc"
+    "url": "git+https://github.com/Z8264/totalizer"
   }
 }
