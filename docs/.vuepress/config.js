@@ -1,6 +1,6 @@
 module.exports = {
-    title: 'Totalizer JS',
-    description: 'Just playing around',
+    title: 'Totalizer',
+    description: 'JavaScript 动画迭代器引擎',
     themeConfig: {
         search: false,
         nav: [

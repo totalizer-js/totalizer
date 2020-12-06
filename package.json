@@ -1,8 +1,8 @@
 {
   "name": "totalizer",
-  "version": "0.0.1-beta",
+  "version": "0.0.2-beta",
   "description": "",
-  "main": "./src/TimeLine.js",
+  "main": "./src/Totalizer.js",
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
