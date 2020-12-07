@@ -6,16 +6,34 @@ module.exports = {
         nav: [
             { text: 'Home', link: '/' },
             { text: 'Document', link: '/document/' },
-            { text: 'GitHub', link: 'https://google.com' },
+            { text: 'GitHub', link: 'https://github.com/Z8264/totalizer' },
         ],
         sidebar: {
             '/document/': [
-                '',
-                'propertys',
-                'methods'
-            ],
-
+                {
+                    title: '指南',   // 必要的
+                    collapsable: false, // 可选的, 默认值是 true,
+                    sidebarDepth: 1,    // 可选的, 默认值是 1
+                    children: [
+                        '',
+                        'Installation',
+                        'Started',
+                        'Propertys',
+                        'Methods'
+                    ]
+                },
+                {
+                    title: '进阶',   // 必要的
+                    collapsable: false, // 可选的, 默认值是 true,
+                    sidebarDepth: 1,    // 可选的, 默认值是 1
+                    children: [
+                        'Continuous',
+                        'Staggering',
+                        'SVG',
+                        'Parallax'
+                    ]
+                },
+            ]
         }
     },
-
 }

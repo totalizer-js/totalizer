@@ -1,7 +1,15 @@
 <template>
-  <section class="demo">
-    <div id="div"></div>
-  </section>
+  <div>
+    <section class="demo">
+      <div id="div"></div>
+    </section>
+    <div class="">
+      <a href="javascript:void(0)">播放</a>
+      <a href="javascript:void(0)">暂停</a>
+      <a href="javascript:void(0)">循环</a>
+      <a href="javascript:void(0)">往返</a>
+    </div>
+  </div>
 </template>
 <script>
 import Totalizer from "../../../src/Totalizer";
@@ -21,6 +29,8 @@ export default {
         translateX: ["0px", "200px"],
         background: ["#f8c555", "#fff"],
       },
+      delay: 100,
+      endDelay: 100,
       duration: 1000,
     });
 
@@ -45,7 +55,7 @@ export default {
   left: 50px;
   width: 50px;
   height: 50px;
-  background: #f8c555;
+  background: #08c;
   border-radius: 50%;
 }
 </style>>

@@ -1,5 +1,5 @@
 <template>
-  <div style="position:relative;">
+  <div style="position: relative">
     <!-- <svg class="svg-defs">
       <g>
         <defs>
@@ -85,7 +85,6 @@
         <textPath xlink:href="#MyPath2" font-size="20">JS Animation Library</textPath>
       </text>
     </svg> -->
-    
 
     <svg viewBox="0 0 1024 1024" class="timeline">
       <rect x="100" y="100" width="300" height="100" fill="#ddd" />
@@ -146,17 +145,16 @@
 </template>
 
 <script>
-import Tolalizer from '../../../src/Totalizer';
+import Totalizer from "../../../src/Totalizer";
 
 export default {
   mounted() {
-    
     this.logo();
     this.line();
   },
   methods: {
-    logo(){
-      // const ani = new Tolalizer();
+    logo() {
+      // const ani = new Totalizer();
       // ani.add({
       //   el: this.$refs.path1,
       //   props: {
@@ -172,7 +170,7 @@ export default {
     },
 
     line() {
-      const ani = new Tolalizer();
+      const ani = new Totalizer();
       ani.add({
         el: this.$refs.line,
         props: {
@@ -225,9 +223,9 @@ export default {
 
 <style scoped>
 svg.timeline {
-  display:block;
-  margin:0 auto;
-  max-width:500px;
+  display: block;
+  margin: 0 auto;
+  max-width: 500px;
   border: 1px dashed #ddd;
 }
 </style>

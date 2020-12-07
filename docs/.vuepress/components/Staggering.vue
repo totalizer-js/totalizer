@@ -1,6 +1,12 @@
 <template>
   <section class="demo">
-    <div id="div"></div>
+    <ul id="ul">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
   </section>
 </template>
 <script>
@@ -14,14 +20,18 @@ export default {
     // 创建一个动画迭代器
     const animation = new Totalizer();
 
-    // 添加一个动画描述
-    animation.add({
-      el: document.getElementById("div"),
-      props: {
-        translateX: ["0px", "200px"],
-        background: ["#f8c555", "#fff"],
-      },
-      duration: 1000,
+    // 添加多个动画描述
+    const els = document.querySelectorAll("#ul li");
+    els.forEach((el, i) => {
+      animation.add({
+        el: el,
+        props: {
+          scale: [0.1, 1],
+          background: ["#f8c555", "#fff"],
+        },
+        duration: 500,
+        delay: i * 200,
+      });
     });
 
     // 设置为循环，往返，并开始播放
@@ -39,14 +49,23 @@ export default {
   border-radius: 5px;
   /* border: 2px solid #ddd; */
 }
-#div {
+ul {
   position: absolute;
   top: 25px;
-  left: 50px;
+  left: 25px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+li {
+  float: left;
+  padding: 0;
+  margin: 0;
+  margin-right: 5px;
   width: 50px;
   height: 50px;
   background: #f8c555;
-  border-radius: 50%;
+  border-radius: 20%;
 }
 </style>>
 
