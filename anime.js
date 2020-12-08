@@ -821,7 +821,6 @@ const defaultInstanceSettings = {
     const id = instanceID;
     instanceID++;
 
-    console.log(animations)
 
     return mergeObjects(instanceSettings, {
       id: id,

@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative">
+  <div style="position: absolute;top:60px;left:0;right:0;">
     <!-- <svg class="svg-defs">
       <g>
         <defs>
@@ -86,7 +86,7 @@
       </text>
     </svg> -->
 
-    <svg viewBox="0 0 1024 1024" class="timeline">
+    <svg viewBox="0 0 1000 600" class="timeline">
       <rect x="100" y="100" width="300" height="100" fill="#ddd" />
       <rect x="100" y="100" width="0" height="100" fill="#b1d3dc" ref="rect1" />
       <text x="250" y="170" font-size="60" text-anchor="middle">Totalizer</text>
@@ -94,17 +94,17 @@
       <rect x="100" y="200" width="200" height="100" fill="#f1f1f1" />
       <rect x="300" y="200" width="300" height="100" fill="#ddd" />
       <rect x="300" y="200" width="0" height="100" fill="#b1d3dc" ref="rect2" />
-      <text x="450" y="260" font-size="20" text-anchor="middle">1500 ms</text>
+      <!-- <text x="450" y="260" font-size="20" text-anchor="middle">1500 ms</text> -->
 
       <rect x="100" y="300" width="400" height="100" fill="#f1f1f1" />
       <rect x="500" y="300" width="200" height="100" fill="#ddd" />
       <rect x="500" y="300" width="0" height="100" fill="#b1d3dc" ref="rect3" />
-      <text x="600" y="360" font-size="20" text-anchor="middle">1000 ms</text>
+      <!-- <text x="600" y="360" font-size="20" text-anchor="middle">1000 ms</text> -->
 
       <rect x="100" y="400" width="600" height="100" fill="#f1f1f1" />
       <rect x="700" y="400" width="200" height="100" fill="#ddd" />
       <rect x="700" y="400" width="0" height="100" fill="#b1d3dc" ref="rect4" />
-      <text x="800" y="460" font-size="20" text-anchor="middle">1000 ms</text>
+      <!-- <text x="800" y="460" font-size="20" text-anchor="middle">1000 ms</text> -->
 
       <line x1="50" y1="100" x2="950" y2="100" stroke="#666" stroke-width="1" />
       <line x1="50" y1="200" x2="950" y2="200" stroke="#666" stroke-width="1" />
@@ -225,7 +225,7 @@ export default {
 svg.timeline {
   display: block;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 300px;
   border: 1px dashed #ddd;
 }
 </style>
