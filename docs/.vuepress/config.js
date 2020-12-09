@@ -1,4 +1,5 @@
 module.exports = {
+    base:'/totalizer/'
     title: 'Totalizer',
     description: 'JavaScript 动画迭代器引擎',
     themeConfig: {

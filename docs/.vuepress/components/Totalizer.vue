@@ -70,7 +70,7 @@
     </div>
     <div class="logo" ref="logo">
       <h1><span ref="letter">T</span>otalizer JS</h1>
-      <p>JavaScript Animation Library</p>
+      <p>JavaScript Animation Engine</p>
     </div>
 
     <section ref="section">
@@ -189,6 +189,8 @@ export default {
       });
 
       // ani.loop().alternate().play();
+      const isPlaying = false;
+    
 
       window.addEventListener("mousemove", (e) => {
         const process = e.clientX / document.body.clientWidth;
