@@ -1,146 +1,143 @@
 <template>
-  <div style="position: absolute;top:60px;left:0;right:0;">
-    <!-- <svg class="svg-defs">
-      <g>
-        <defs>
-          <path
-            id="path1"
-            transform="scale(2)"
-            d="M 30,30 150,30 50,50 140,70 "
-            fill="none"
-            stroke="red"
-          ></path>
+  <div class="wrapper" style="position: relative" ref="wrapper">
+    <div class="boxer" ref="boxer">
+      <div class="preloader">
+        <div class="preloader__ring">
+          <div class="preloader__sector">T</div>
+          <div class="preloader__sector">o</div>
+          <div class="preloader__sector">t</div>
+          <div class="preloader__sector">a</div>
+          <div class="preloader__sector">l</div>
+          <div class="preloader__sector">i</div>
+          <div class="preloader__sector">z</div>
+          <div class="preloader__sector">e</div>
+          <div class="preloader__sector">r</div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+        </div>
+        <div class="preloader__ring">
+          <div class="preloader__sector">T</div>
+          <div class="preloader__sector">o</div>
+          <div class="preloader__sector">t</div>
+          <div class="preloader__sector">a</div>
+          <div class="preloader__sector">l</div>
+          <div class="preloader__sector">i</div>
+          <div class="preloader__sector">z</div>
+          <div class="preloader__sector">e</div>
+          <div class="preloader__sector">r</div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+          <div class="preloader__sector"></div>
+        </div>
+      </div>
+    </div>
+    <div class="logo" ref="logo">
+      <h1><span ref="letter">T</span>otalizer JS</h1>
+      <p>JavaScript Animation Library</p>
+    </div>
 
-          <path id="half-c" d="M 20,20 C 150,20 150,150 20,150"></path>
+    <section ref="section">
+      <svg viewBox="0 0 400 200" ref="eases" class="eases"></svg>
 
-          <path
-            id="MyPath-save"
-            d="M 100 200 
-             C 200 100 300   0 400 100
-             C 500 200 600 300 700 200
-             C 800 100 900 100 900 100"
-          ></path>
-          <path
-            id="MyPath1"
-            ref="path1"
-            d="M 50 200 A226,110 0 0,1 500,200"
-            transform="scale(.9)"
-          ></path>
-          <path
-            id="MyPath2"
-            d="M 80 150 
-             L 500 150"
-            transform="scale(.6)"
-          ></path>
+      <svg viewBox="0 0 1000 500" ref="timeline" class="timeline">
+        <rect x="100" y="100" width="300" height="70" class="rect_bg" />
+        <rect
+          x="100"
+          y="100"
+          width="0"
+          height="70"
+          ref="rect1"
+          class="rect_ac"
+        />
+        <text x="250" y="150" font-size="40" text-anchor="middle">
+          Totalizer
+        </text>
 
-          <linearGradient id="v-gradient" x1="0" y1="0" x2="100%" y2="0%">
-            <stop stop-color="hsl(45,100%,65%)" offset="0"></stop>
-            <stop stop-color="hsl(320,100%,65%)" offset="50%"></stop>
-            <stop stop-color="hsl(200,100%,60%)" offset="100%"></stop>
-          </linearGradient>
+        <rect x="100" y="170" width="200" height="70" class="rect_delay" />
+        <rect x="300" y="170" width="300" height="70" class="rect_bg" />
+        <rect
+          x="300"
+          y="170"
+          width="0"
+          height="70"
+          class="rect_ac"
+          ref="rect2"
+        />
+        <text x="450" y="215" font-size="30" text-anchor="middle">1500</text>
 
-          <linearGradient id="MyGradient" x1="0" y1="0" x2="100%" y2="0%" ref="color">
-            <stop offset="0%" stop-color="crimson"></stop>
-            <stop offset="10%" stop-color="purple"></stop>
-            <stop offset="10%" stop-color="red"></stop>
-            <stop offset="20%" stop-color="crimson"></stop>
-            <stop offset="20%" stop-color="orangered"></stop>
-            <stop offset="30%" stop-color="red"></stop>
-            <stop offset="30%" stop-color="orange"></stop>
-            <stop offset="40%" stop-color="orangered"></stop>
-            <stop offset="40%" stop-color="gold"></stop>
-            <stop offset="50%" stop-color="orange"></stop>
-            <stop offset="50%" stop-color="yellowgreen"></stop>
-            <stop offset="60%" stop-color="gold"></stop>
-            <stop offset="60%" stop-color="green"></stop>
-            <stop offset="70%" stop-color="yellowgreen"></stop>
-            <stop offset="70%" stop-color="steelblue"></stop>
-            <stop offset="80%" stop-color="skyblue"></stop>
-            <stop offset="80%" stop-color="mediumpurple"></stop>
-            <stop offset="90%" stop-color="steelblue"></stop>
-            <stop offset="90%" stop-color="purple"></stop>
-            <stop offset="100%" stop-color="mediumpurple"></stop>
-          </linearGradient>
+        <rect x="100" y="240" width="400" height="70" class="rect_delay" />
+        <rect x="500" y="240" width="200" height="70" class="rect_bg" />
+        <rect
+          x="500"
+          y="240"
+          width="0"
+          height="70"
+          class="rect_ac"
+          ref="rect3"
+        />
+        <text x="600" y="285" font-size="30" text-anchor="middle">1000</text>
 
-          <pattern
-            id="p-stripes"
-            patternUnits="userSpaceOnUse"
-            width="200"
-            height="200"
-            viewBox="0 0 200 200"
-          >
-            <rect width="200" height="200" fill="url(#MyGradient)"></rect>
-          </pattern>
-        </defs>
-      </g>
-    </svg>
-    <svg class="texts" viewBox="0 0 500 300">
-      <text class="text-1" transform="translate(0)">
-        <textPath xlink:href="#MyPath1">
-          &nbsp;&nbsp;Totalizer&nbsp;&nbsp;
-        </textPath>
-      </text>
+        <rect x="100" y="310" width="600" height="70" class="rect_delay" />
+        <rect x="700" y="310" width="200" height="70" class="rect_bg" />
+        <rect
+          x="700"
+          y="310"
+          width="0"
+          height="70"
+          class="rect_ac"
+          ref="rect4"
+        />
+        <text x="800" y="355" font-size="30" text-anchor="middle">1000</text>
 
-      <text class="text-2" transform="translate(95 85)">
-        <textPath xlink:href="#MyPath2" font-size="20">JS Animation Library</textPath>
-      </text>
-    </svg> -->
+        <line x1="50" y1="100" x2="950" y2="100" stroke-dasharray="5" />
+        <line x1="50" y1="170" x2="950" y2="170" stroke-dasharray="5" />
+        <line x1="50" y1="240" x2="950" y2="240" stroke-dasharray="5" />
+        <line x1="50" y1="310" x2="950" y2="310" stroke-dasharray="5" />
+        <line x1="50" y1="380" x2="950" y2="380" stroke-dasharray="5" />
 
-    <svg viewBox="0 0 1000 600" class="timeline">
-      <rect x="100" y="100" width="300" height="100" fill="#ddd" />
-      <rect x="100" y="100" width="0" height="100" fill="#b1d3dc" ref="rect1" />
-      <text x="250" y="170" font-size="60" text-anchor="middle">Totalizer</text>
+        <line x1="100" y1="50" x2="100" y2="430" stroke-dasharray="5" />
+        <line x1="900" y1="50" x2="900" y2="430" stroke-dasharray="5" />
 
-      <rect x="100" y="200" width="200" height="100" fill="#f1f1f1" />
-      <rect x="300" y="200" width="300" height="100" fill="#ddd" />
-      <rect x="300" y="200" width="0" height="100" fill="#b1d3dc" ref="rect2" />
-      <!-- <text x="450" y="260" font-size="20" text-anchor="middle">1500 ms</text> -->
-
-      <rect x="100" y="300" width="400" height="100" fill="#f1f1f1" />
-      <rect x="500" y="300" width="200" height="100" fill="#ddd" />
-      <rect x="500" y="300" width="0" height="100" fill="#b1d3dc" ref="rect3" />
-      <!-- <text x="600" y="360" font-size="20" text-anchor="middle">1000 ms</text> -->
-
-      <rect x="100" y="400" width="600" height="100" fill="#f1f1f1" />
-      <rect x="700" y="400" width="200" height="100" fill="#ddd" />
-      <rect x="700" y="400" width="0" height="100" fill="#b1d3dc" ref="rect4" />
-      <!-- <text x="800" y="460" font-size="20" text-anchor="middle">1000 ms</text> -->
-
-      <line x1="50" y1="100" x2="950" y2="100" stroke="#666" stroke-width="1" />
-      <line x1="50" y1="200" x2="950" y2="200" stroke="#666" stroke-width="1" />
-      <line x1="50" y1="300" x2="950" y2="300" stroke="#666" stroke-width="1" />
-      <line x1="50" y1="400" x2="950" y2="400" stroke="#666" stroke-width="1" />
-      <line x1="50" y1="500" x2="950" y2="500" stroke="#666" stroke-width="1" />
-
-      <line
-        x1="100"
-        y1="50"
-        x2="100"
-        y2="550"
-        stroke="#666"
-        stroke-width="1"
-        stroke-dasharray="0"
-      />
-      <line
-        x1="900"
-        y1="50"
-        x2="900"
-        y2="550"
-        stroke="#666"
-        stroke-width="1"
-        stroke-dasharray="0"
-      />
-
-      <line
-        x1="100"
-        y1="50"
-        x2="100"
-        y2="550"
-        stroke="#08c"
-        stroke-width="4"
-        ref="line"
-      />
-    </svg>
+        <line x1="100" y1="50" x2="100" y2="430" ref="line" class="move" />
+      </svg>
+    </section>
   </div>
 </template>
 
@@ -150,23 +147,108 @@ import Totalizer from "../../../src/Totalizer";
 export default {
   mounted() {
     this.logo();
+    this.eases();
     this.line();
   },
   methods: {
     logo() {
-      // const ani = new Totalizer();
-      // ani.add({
-      //   el: this.$refs.path1,
+      // const letter = new Totalizer();
+      // letter.add({
+      //   el: this.$refs.letter,
       //   props: {
-      //     d:[
-      //       'M 50 200 A226,110 0 0,1 500,200',
-      //       'M 40 200 A326,220 0 0,1 550,200']
+      //     translateY: ["50px", "0px"],
       //   },
-      //   delay: 500,
-      //   endDelay: 500,
-      //   duration: 2000,
+      //   delay:100,
+      //   endDelay:100,
+      //   duration:2000,
       // });
+      // letter.loop().alternate().play();
+
+
+
+      const boxer = new Totalizer();
+      boxer.add({
+        el: this.$refs.boxer,
+        props: {
+          translateX: ["50px", "-50px"],
+        },
+      });
+      const logo = new Totalizer();
+      logo.add({
+        el: this.$refs.logo,
+        props: {
+          translateX: ["-50px", "50px"],
+        },
+      });
+      const section = new Totalizer();
+      section.add({
+        el: this.$refs.section,
+        props: {
+          translateX: ["50px", "-50px"],
+        },
+      });
+
       // ani.loop().alternate().play();
+
+      window.addEventListener("mousemove", (e) => {
+        const process = e.clientX / document.body.clientWidth;
+        boxer.process(process);
+        logo.process(process);
+        section.process(process);
+        // console.log(e.clientX,e.clientY,document.body.clientWidth);
+      });
+    },
+
+    eases() {
+      [
+        "linear",
+        "easeOutSine",
+        "easeOutQuad",
+        "easeOutCubic",
+        // "easeOutQuart",
+        // "easeOutQuint",
+        // "easeOutExpo",
+        "easeOutCirc",
+        "easeOutBounce",
+        "easeOutBack",
+        "easeOutElastic",
+      ].forEach((ease, i) => {
+        const rect = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "rect"
+        );
+        rect.setAttribute("x", 120);
+        rect.setAttribute("y", (i + 1) * 16 + 15);
+        rect.setAttribute("width", 20);
+        rect.setAttribute("height", 10);
+        rect.setAttribute("rx", 2);
+        rect.setAttribute("fill", "rgba(0,220,255,1)");
+        const text = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "text"
+        );
+        text.setAttribute("x", 20);
+        text.setAttribute("y", (i + 1) * 16 + 24);
+        text.setAttribute("class", "text");
+        text.innerHTML = ease;
+        text.setAttribute(
+          "style",
+          'font-size:12px;line-height:20px;  font-family:"Times New Roman",Georgia,Serif;'
+        );
+        text.setAttribute("fill", "#aaa");
+
+        const ani = new Totalizer({
+          el: rect,
+          props: {
+            x: "320",
+          },
+          duration: 2000,
+          easing: ease,
+        });
+        ani.loop().alternate().play();
+        this.$refs.eases.appendChild(text);
+        this.$refs.eases.appendChild(rect);
+      });
     },
 
     line() {
@@ -221,11 +303,256 @@ export default {
 };
 </script>
 
-<style scoped>
-svg.timeline {
+<style scoped lang="stylus">
+.wrapper {
+  padding-bottom: 20px;
+  // border: 1px solid red;
+}
+
+section {
+  display: flex;
+  box-sizing: border-box;
+}
+
+.boxer {
+  height: 250px;
+}
+
+.logo {
+  padding-bottom: 40px;
+  text-align: center;
+
+  h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 45px;
+  }
+
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+svg.eases, svg.timeline {
+  width: 50%;
   display: block;
-  margin: 0 auto;
-  max-width: 300px;
-  border: 1px dashed #ddd;
+  box-sizing: border-box;
+}
+
+svg.eases {
+}
+
+svg.timeline {
+  line {
+    stroke: #333;
+    stroke-width: 1;
+  }
+
+  line.move {
+    stroke-width: 4;
+    stroke: rgba(0, 220, 255, 1);
+  }
+
+  text {
+    fill: #999;
+  }
+
+  .rect_delay {
+    fill: #f7f7f7;
+  }
+
+  .rect_bg {
+    fill: #e1e1e1;
+  }
+
+  .rect_ac {
+    // fill: rgba(0,220,255,1);
+    fill: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.preloader {
+  display: flex;
+  color: rgba(0, 220, 255, 1);
+  animation: tiltSpin 10s linear infinite;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 17em;
+  height: 17em;
+}
+
+.preloader, .preloader__ring {
+  transform-style: preserve-3d;
+}
+
+.preloader__ring {
+  animation-name: spin;
+  animation-duration: 4s;
+  animation-timing-function: inherit;
+  animation-iteration-count: inherit;
+  font-size: 2em;
+  position: relative;
+  height: 3rem;
+  width: 1.5rem;
+}
+
+.preloader__sector {
+  font-weight: 600;
+  position: absolute;
+  top: 0;
+  left: 0;
+  text-align: center;
+  transform: translateZ(7rem);
+}
+
+.preloader__sector, .preloader__sector:empty:before {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.preloader__sector:empty:before {
+  background: linear-gradient(transparent 45%, currentColor 45% 55%, transparent 55%);
+  content: '';
+}
+
+.preloader__sector:nth-child(2) {
+  transform: rotateY(12deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(3) {
+  transform: rotateY(24deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(4) {
+  transform: rotateY(36deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(5) {
+  transform: rotateY(48deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(6) {
+  transform: rotateY(60deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(7) {
+  transform: rotateY(72deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(8) {
+  transform: rotateY(84deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(9) {
+  transform: rotateY(96deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(10) {
+  transform: rotateY(108deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(11) {
+  transform: rotateY(120deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(12) {
+  transform: rotateY(132deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(13) {
+  transform: rotateY(144deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(14) {
+  transform: rotateY(156deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(15) {
+  transform: rotateY(168deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(16) {
+  transform: rotateY(180deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(17) {
+  transform: rotateY(192deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(18) {
+  transform: rotateY(204deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(19) {
+  transform: rotateY(216deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(20) {
+  transform: rotateY(228deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(21) {
+  transform: rotateY(240deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(22) {
+  transform: rotateY(252deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(23) {
+  transform: rotateY(264deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(24) {
+  transform: rotateY(276deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(25) {
+  transform: rotateY(288deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(26) {
+  transform: rotateY(300deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(27) {
+  transform: rotateY(312deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(28) {
+  transform: rotateY(324deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(29) {
+  transform: rotateY(336deg) translateZ(7rem);
+}
+
+.preloader__sector:nth-child(30) {
+  transform: rotateY(348deg) translateZ(7rem);
+}
+
+/* Animations */
+@keyframes tiltSpin {
+  from {
+    transform: rotateY(0) rotateX(30deg);
+  }
+
+  to {
+    transform: rotateY(360deg) rotateX(30deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotateY(0);
+  }
+
+  to {
+    transform: rotateY(1turn);
+  }
 }
 </style>

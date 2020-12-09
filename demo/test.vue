@@ -169,8 +169,7 @@
   </div>
 </template>
 <script>
-// import Animate from '../src/main';
-import TimeLine from '../src/TimeLine';
+import Totalizer from '../src/Totalizer';
 
 export default {
   data() {
@@ -205,7 +204,7 @@ export default {
   },
   methods: {
     test01() {
-      const ani = new TimeLine({
+      const ani = new Totalizer({
         el: this.$refs.test01_circle,
         props: {
           cx: 320,
@@ -217,7 +216,7 @@ export default {
       ani.loop().alternate().play();
     },
     test02() {
-      const ani = new TimeLine({
+      const ani = new Totalizer({
         el: this.$refs.test02_div,
         props: {
           left: '250px',
@@ -228,7 +227,7 @@ export default {
       ani.loop().alternate().play();
     },
     test03() {
-      const ani = new TimeLine({
+      const ani = new Totalizer({
         el: this.$refs.test03_circle,
         props: {
           fill: '#08c',
@@ -245,7 +244,7 @@ export default {
       ani.loop().alternate().play();
     },
     test04() {
-      const ani = new TimeLine({
+      const ani = new Totalizer({
         el: this.$refs.transform_rect,
         props: {
           translateX: ['50px', '200px'],
@@ -260,7 +259,7 @@ export default {
     },
 
     loopDemo() {
-      const loop = new TimeLine({
+      const loop = new Totalizer({
         el: this.$refs.loop_rect_1,
         props: {
           x: '320',
@@ -270,7 +269,7 @@ export default {
         endDelay: 300,
       });
       loop.loop().play();
-      const alternate = new TimeLine({
+      const alternate = new Totalizer({
         el: this.$refs.loop_rect_2,
         props: {
           x: '320',
@@ -280,7 +279,7 @@ export default {
         endDelay: 300,
       });
       alternate.loop().alternate().play();
-      const noloop = new TimeLine({
+      const noloop = new Totalizer({
         el: this.$refs.loop_rect_3,
         props: {
           x: '320',
@@ -322,7 +321,7 @@ export default {
         text.innerHTML = ease;
         text.setAttribute('style', 'font-size:12px;line-height:20px;');
 
-        const ani = new TimeLine({
+        const ani = new Totalizer({
           el: rect,
           props: {
             x: '320',
@@ -339,7 +338,7 @@ export default {
       const el = this.$refs.path;
       const totalLen = el.getTotalLength();
       el.setAttribute('stroke-dasharray', totalLen);
-      const ani = new TimeLine({
+      const ani = new Totalizer({
         el,
         props: {
           strokeDashoffset: [totalLen, 0],
@@ -355,7 +354,7 @@ export default {
       const path = this.$refs.moving_path;
       const totalLen = path.getTotalLength();
 
-      const ani = new TimeLine({
+      const ani = new Totalizer({
         el,
         props: {
           cx: (process) => path.getPointAtLength(totalLen * process).x,
@@ -368,7 +367,7 @@ export default {
       ani.loop().alternate().play();
     },
     changingDemo() {
-      const ani = new TimeLine({
+      const ani = new Totalizer({
         el: this.$refs.changing_path,
         props: {
           d:
@@ -380,7 +379,7 @@ export default {
       ani.loop().alternate().play();
     },
     controllDemo() {
-      this.ani = new TimeLine({
+      this.ani = new Totalizer({
         el: this.$refs.controll_circle,
         props: {
           cx: 320,

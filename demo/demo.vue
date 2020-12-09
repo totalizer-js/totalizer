@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import TimeLine from '../src/TimeLine';
+import Totalizer from '../src/Totalizer';
 
 export default {
   mounted() {
@@ -87,7 +87,7 @@ export default {
         this.$refs.g.appendChild(rect);
       }
     }
-    const ani = new TimeLine();
+    const ani = new Totalizer();
     for (let i = 0; i < num; i += 1) {
       for (let j = 0; j < num; j += 1) {
         ani.add({
@@ -128,7 +128,7 @@ export default {
   },
   methods: {
     line() {
-      const ani = new TimeLine();
+      const ani = new Totalizer();
       ani.add({
         el: this.$refs.line,
         props: {

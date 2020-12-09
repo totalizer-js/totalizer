@@ -18,8 +18,8 @@ module.exports = {
                         '',
                         'Installation',
                         'Started',
-                        'Propertys',
-                        'Methods'
+                        'Property',
+                        'Method'
                     ]
                 },
                 {
