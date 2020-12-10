@@ -307,8 +307,12 @@ export default {
 
 <style scoped lang="stylus">
 .wrapper {
-  padding-bottom: 20px;
+  margin-bottom: 50px;
   // border: 1px solid red;
+  // border-radius: 5px;
+  overflow:hidden;
+  // box-shadow : 300px 0 20px 10px #f1f1f1,-300px 0 20px 10px #f1f1f1;;
+
 }
 
 section {
