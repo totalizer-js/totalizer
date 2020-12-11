@@ -12,6 +12,8 @@
 </p>
 
 
+> 当前版本正处于测试阶段，正式版本即将发布。
+
 ## Introduction
 
 Totalizer JS 提供一种简单的DOM、SVG动画描述方式，以及一个管理多个动画描述的机制。它的诞生初衷是创建一个核心的动画渲染和管理的抽象层，以便构建复杂动画交互组件。
@@ -65,17 +67,33 @@ animation.loop().play();
 
 ## Features
 
+
 Totalizer（累加器），顾名思义，可以通过添加多个动画描述，来实现复杂的动画。例如：
 
 * [交错动画](https://totalizer-js.github.io/document/Staggering.html)：添加多个不同元素的动画描述，来实现同步或交错动画。
 
+<img src="https://totalizer-js.github.io/assets/img/staggering.e649c58b.gif" alt="gif">
+
 * [连续动画](https://totalizer-js.github.io/document/Continuous.html)：添加一个元素多个不同时间段的动画描述，来实现连续动画。
 
+<img src="https://totalizer-js.github.io/assets/img/move.add4b4b3.gif" alt="gif">
+
 * [SVG动画](https://totalizer-js.github.io/document/SVG.html)：通过自定属性变化函数，来实现SVG动画特殊效果。
+  
+<p>
+<img src="https://totalizer-js.github.io/assets/img/svg01.75a80924.gif" alt="gif"> 
+<img src="https://totalizer-js.github.io/assets/img/svg02.075069cd.gif" alt="gif">
+<img src="https://totalizer-js.github.io/assets/img/svg03.6b08d578.gif" alt="gif">
+</p>
 
 * [视差动画](https://totalizer-js.github.io/document/Parallax.html)：通过设定动画的进程来实现视差效果。
 
+<img src="https://totalizer-js.github.io//assets/img/parallax.f4c863cc.gif" alt="gif">
 
+
+## Documents
+
+[totalizer-js.github.io](//totalizer-js.github.io)
 ## License
 
 MIT

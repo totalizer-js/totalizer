@@ -4,5 +4,5 @@
 
 
 ``` shell
-npm i -S Totalizer
+npm i -S totalizer
 ```

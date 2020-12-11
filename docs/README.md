@@ -9,7 +9,9 @@ footer: MIT Licensed | Copyright © 2020-present Z8264
   <Totalizer/>
 </ClientOnly>
 
-
+::: danger
+当前版本正处于测试阶段，正式版本即将发布。
+:::
 
 ## Introduction
 
@@ -66,16 +68,32 @@ animation.loop().play();
 
 ## Features
 
+
 Totalizer（累加器），顾名思义，可以通过添加多个动画描述，来实现复杂的动画。例如：
 
-* [交错动画](https://totalizer-js.github.io/document/Staggering.html)：通过添加多个元素节点的动画描述，来实现同步或交错动画。
+* [交错动画](https://totalizer-js.github.io/document/Staggering.html)：添加多个不同元素的动画描述，来实现同步或交错动画。
 
-* [连续动画](https://totalizer-js.github.io/document/Continuous.html)：通过添加一个节点，不同时间段的动画描述，来实现连续动画。
+![gif](./.vuepress/public/staggering.gif)
 
-* [SVG动画](https://totalizer-js.github.io/document/SVG.html)：通过自定属性描述，来实现SVG动画特殊效果。
 
-* [视差动画](https://totalizer-js.github.io/document/Parallax.html)：通过设定动画的 process 来实现视差效果。
+* [连续动画](https://totalizer-js.github.io/document/Continuous.html)：添加一个元素多个不同时间段的动画描述，来实现连续动画。
 
+![gif](./.vuepress/public/move.gif)
+
+
+* [SVG动画](https://totalizer-js.github.io/document/SVG.html)：通过自定属性变化函数，来实现SVG动画特殊效果。
+
+![gif](./.vuepress/public/svg01.gif)
+![gif](./.vuepress/public/svg02.gif)
+![gif](./.vuepress/public/svg03.gif)
+
+* [视差动画](https://totalizer-js.github.io/document/Parallax.html)：通过设定动画的进程来实现视差效果。
+
+![gif](./.vuepress/public/parallax.gif)
+
+## Documents
+
+[totalizer-js.github.io](//totalizer-js.github.io)
 
 ## License
 
