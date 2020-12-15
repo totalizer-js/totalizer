@@ -15,34 +15,34 @@ const el = document.getElementById("div");
 animation.add({
   el,
   props: {
-    translateX: ["0px", "100px"],
+    translateX: [0, 100],
   },
   duration: 1000,
 });
 animation.add({
   el,
   props: {
-    translateY: ["0px", "50px"],
+    translateY: [0, 50],
   },
   duration: 500,
-  delay: animation.duration,
+  delay: animation.totalTime,
   easing: 'easeOutBounce'
 });
 animation.add({
   el,
   props: {
-    translateX: ["100px", "0px"],
+    translateX: [100, 0],
   },
   duration: 1000,
-  delay: animation.duration
+  delay: animation.totalTime
 });
 animation.add({
   el,
   props: {
-    translateY: ["50px", "0px"],
+    translateY: [50, 0],
   },
   duration: 500,
-  delay: animation.duration
+  delay: animation.totalTime
 });
 
 // 设置为循环播放

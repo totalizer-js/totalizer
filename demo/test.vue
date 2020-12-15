@@ -247,7 +247,7 @@ export default {
       const ani = new Totalizer({
         el: this.$refs.transform_rect,
         props: {
-          translateX: ['50px', '200px'],
+          translateX: [50, 200],
           translateY: ['50px', '100px'],
           scaleX: 2,
           scaleY: 2,
