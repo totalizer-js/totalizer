@@ -1,8 +1,6 @@
-/**
- * 解析属性，转换为统一动画变量
- */
 import { isColor, color2rgba } from './color';
-import getElementTransform from './transform';
+import eases from './eases';
+import getElementTransform from './getElementTransform';
 
 const decompose = (str) => {
   if (isColor(str)) {
@@ -20,11 +18,21 @@ const decompose = (str) => {
 
 const tweens = (opts) => Object.entries(opts.props).map(([prop, value]) => {
   const {
-    el, delay, endDelay, duration, easing,
+    el, delay, endDelay, duration,
   } = opts;
   let [originalFrom, originalTo] = ['', ''];
   let [type, from, to, fn, str] = ['', null, null, null, null];
   const transform = getElementTransform(el);
+
+  /**
+   * easing
+   */
+  let easing;
+  if (typeof opts.easing === 'string') {
+    easing = eases[opts.easing] ? eases[opts.easing]() : eases.linear();
+  } else if (typeof opts.easing === 'function') {
+    easing = opts.easing;
+  } else easing = eases.linear();
 
   /**
    * type: transform attribute css
@@ -44,6 +52,10 @@ const tweens = (opts) => Object.entries(opts.props).map(([prop, value]) => {
 
   /**
    * decompose value
+   * fn Function
+   * from [Number,Number, ...]
+   * to [Number,Number, ...]
+   * str [String,String, ...]
    */
   [originalFrom, originalTo] = Array.isArray(value) ? value : [originalFrom, value];
   if (typeof value === 'function') {

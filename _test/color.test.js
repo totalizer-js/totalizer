@@ -1,4 +1,4 @@
-import { isColor, color2rgba } from '../src/color';
+import { isColor, color2rgba } from '../src/utils/color';
 
 test('is color', () => {
   expect(isColor('#fff')).toBe(true);

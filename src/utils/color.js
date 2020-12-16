@@ -16,7 +16,7 @@ const hue2rgb = (p, q, t) => {
 };
 
 /**
- * 判断参数是否为色值
+ * Determine whether the parameter is a color value
  * 色值：hex，rgb，rgba，hsl，hsla
  * @param {any} s
  */
@@ -27,8 +27,8 @@ export const isColor = (s) => {
 };
 
 /**
- * 将色值转换为 rgba 数值
- * @param {string} color 色值
+ * Convert the color value to RGBA value
+ * @param {string} color
  */
 export const color2rgba = (color) => {
   const str = color.trim();

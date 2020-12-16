@@ -49,7 +49,7 @@ conat animation = new Totalizer();
 animation.add({
   el: document.getElementById("div"),   // 动画节点
   props: {
-    translateX: [0, 200],       // 偏移量从 0px 变为 200px
+    translateX: [0, 200],               // 偏移量从 0px 变为 200px
     background: ["#333", "#fff"],       // 背景色从 #333 变为 #fff 
   },
   duration: 1000,                       // 动画持续时间

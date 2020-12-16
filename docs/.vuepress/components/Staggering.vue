@@ -1,6 +1,22 @@
 <template>
   <section class="demo">
+    <h2>Staggering</h2>
     <ul id="ul">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
       <li></li>
       <li></li>
       <li></li>
@@ -18,54 +34,72 @@ export default {
   },
   mounted() {
     // 创建一个动画迭代器
-    const animation = new Totalizer();
+    const t = new Totalizer();
 
     // 添加多个动画描述
     const els = document.querySelectorAll("#ul li");
     els.forEach((el, i) => {
-      animation.add({
+      t.add({
         el: el,
         props: {
-          scale: [0.1, 1],
-          background: ["#f8c555", "#fff"],
+          scale: [0.5, 1],
+          rotate: [0, 360],
+          background: ["#333", "#08c"],
         },
         duration: 500,
-        delay: i * 200,
+        delay: (parseInt(i/5) + (i % 5)) * 200,
       });
     });
 
     // 设置为循环，往返，并开始播放
-    animation.loop().alternate().play();
+    t.loop().alternate().play();
   },
   methods: {},
 };
 </script>
 <style scoped>
 .demo {
+  margin-top:10px;
   position: relative;
-  height: 100px;
-  width: 100%;
-  background: #333;
-  border-radius: 5px;
-  /* border: 2px solid #ddd; */
+  height: 300px;
+  max-width: 400px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
+h2 {
+  position:absolute;
+  padding:0;
+  margin:0;
+  right:15px;
+  top:0px;
+  line-height:40px;
+  color:#08c;
+  font-size:16px;
+  font-weight: normal;
+  border:none;
+  text-shadow: 1px 1px 0 #fff;
+}
+
 ul {
   position: absolute;
-  top: 25px;
-  left: 25px;
+  top: 100px;
+  left: 100px;
+  width: 200px;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-wrap:  wrap;
   list-style: none;
 }
 li {
-  float: left;
-  padding: 0;
-  margin: 0;
-  margin-right: 5px;
-  width: 50px;
-  height: 50px;
-  background: #f8c555;
-  border-radius: 20%;
+  width: 30px;
+  height: 20px;
+  margin: 0 10px 10px 0;
+  background: #08c;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 </style>>
 

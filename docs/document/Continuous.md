@@ -7,44 +7,45 @@
 
 ``` javascript
 // 创建一个动画迭代器
-const animation = new Totalizer();
+const t = new Totalizer();
 const el = document.getElementById("div");
 
 // 添加多个连续动画描述
-// 使用实例的只读属性 animation.druation, 用来表示当前实例的总时长。
-animation.add({
+// 使用实例的只读属性 totalTime, 用来表示当前实例的总时长。
+t.add({
   el,
   props: {
-    translateX: [0, 100],
-  },
-  duration: 1000,
-});
-animation.add({
-  el,
-  props: {
-    translateY: [0, 50],
+    translateX: [0, 280],
   },
   duration: 500,
-  delay: animation.totalTime,
+  delay: 300,
+});
+t.add({
+  el,
+  props: {
+    translateY: [0, 150],
+  },
+  duration: 500,
+  delay: t.totalTime,
   easing: 'easeOutBounce'
 });
-animation.add({
+t.add({
   el,
   props: {
-    translateX: [100, 0],
-  },
-  duration: 1000,
-  delay: animation.totalTime
-});
-animation.add({
-  el,
-  props: {
-    translateY: [50, 0],
+    translateX: [280, 0],
   },
   duration: 500,
-  delay: animation.totalTime
+  delay: t.totalTime
+});
+t.add({
+  el,
+  props: {
+    translateY: [150, 0],
+  },
+  duration: 500,
+  delay: t.totalTime
 });
 
 // 设置为循环播放
-animation.loop().play();
+t.loop().play();
 ```

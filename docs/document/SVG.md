@@ -10,16 +10,17 @@
 const el = this.$refs.path;
 const totalLen = el.getTotalLength();
 el.setAttribute("stroke-dasharray", totalLen);
-const animation = new Totalizer({
+const t = new Totalizer();
+t.add({
   el,
   props: {
     strokeDashoffset: [totalLen, 0],
   },
   duration: 2000,
   delay: 300,
-  endDelay: 300
+  endDelay: 300,
 });
-animation.loop().alternate().play();
+t.loop().alternate().play();
 ```
 ## 路径变化
 
@@ -29,7 +30,8 @@ animation.loop().alternate().play();
 
 
 ``` javascript
-const animation = new Totalizer({
+const t = new Totalizer();
+t.add({
   el: document.getElementById('svgPath'),
   props: {
     d: [
@@ -39,7 +41,7 @@ const animation = new Totalizer({
   },
   duration: 1000,
 });
-animation.loop().alternate().play();
+t.loop().alternate().play();
 ```
 
 ## 路径位移
@@ -55,7 +57,8 @@ const el = document.getElementById('svgCircle');
 const path = document.getElementById('movingPath');
 const totalLen = path.getTotalLength();
 
-const animation = new Totalizer({
+const t = new Totalizer();
+t.add({
   el,
   props: {
     cx: (process) => path.getPointAtLength(totalLen * process).x,
@@ -65,5 +68,5 @@ const animation = new Totalizer({
   duration: 5000,
   loop: true,
 });
-animation.loop().play();
+t.loop().play();
 ```

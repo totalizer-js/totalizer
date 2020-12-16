@@ -1,15 +1,8 @@
 /* eslint-disable no-underscore-dangle */
-import engine from './engine';
-import eases from './eases';
-import getElementTransform from './transform';
-import tweenFactory from './tweens';
-
-const isHighPriority = (old, current) => {
-  if (current[0] > 0 || current[0] > old[0]) return true;
-
-  if (current[1] >= old[1]) return true;
-  return false;
-};
+import engine from './utils/engine';
+import getElementTransform from './utils/getElementTransform';
+import { getLevel, compareLevel } from './utils/level';
+import createTweens from './utils/createTweens';
 
 class Totalizer {
   constructor(options) {
@@ -60,18 +53,16 @@ class Totalizer {
   }
 
   _setRenderMap(tween) {
-    let process;
     const cur = this.isReverse ? (this.totalTime - this.cur) : this.cur;
-    let level;
+    const level = getLevel(tween, cur);
+
+    let process;
     if (cur < tween.delay) {
       process = 0;
-      level = [-1, cur - tween.delay];
     } else if (cur <= tween.delay + tween.duration) {
       process = (cur - tween.delay) / tween.duration;
-      level = [1, 0];
     } else {
       process = 1;
-      level = [0, tween.delay + tween.duration - cur];
     }
 
     const ratio = tween.easing(process);
@@ -93,7 +84,7 @@ class Totalizer {
     if (!renderCash) renderCash = new Map();
 
     const renderItem = renderCash.get(tween.prop);
-    if (!renderItem || isHighPriority(renderItem.level, level)) {
+    if (!renderItem || compareLevel(level, renderItem.level)) {
       renderCash.set(tween.prop, {
         el: tween.el,
         type: tween.type,
@@ -208,18 +199,9 @@ class Totalizer {
       ...options,
     };
 
-    if (typeof opts.easing === 'string') {
-      opts.easing = eases[opts.easing] ? eases[opts.easing]() : eases.linear();
-    }
-
-    if (typeof opts.easing !== 'function') {
-      opts.easing = eases.linear();
-    }
-
     this.totalTime = Math.max(opts.duration + opts.delay + opts.endDelay, this.totalTime);
 
-    const newTweens = tweenFactory(opts);
-    this.tweens.push(...newTweens);
+    this.tweens.push(...createTweens(opts));
     return this;
   }
 

@@ -1,5 +1,5 @@
 /**
- * 默认缓动函数
+ * default easing function
  * reference:
  * https://github.com/danro/jquery-easing/blob/master/jquery.easing.js
  *

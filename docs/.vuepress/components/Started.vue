@@ -1,5 +1,6 @@
 <template>
   <section class="demo">
+    <h2>Sample Animation</h2>
     <div id="div"></div>
   </section>
 </template>
@@ -12,41 +13,64 @@ export default {
   },
   mounted() {
     // 创建一个动画迭代器
-    const animation = new Totalizer();
+    const t = new Totalizer();
 
     // 添加一个动画描述
-    animation.add({
-      el: document.getElementById("div"),
+    t.add({
+      el: document.getElementById("div"),   // 动画节点
       props: {
-        translateX: ["0px", "200px"],
-        background: ["#f8c555", "#fff"],
+        translateX: [0, 300],               // 偏移量从 0px 变为 200px
+        scale: [0.4, 1],                    // 缩放 0.4倍 变为 1倍
+        rotate: [0, 720],                   // 旋转 0deg 变为 720deg
+        background: ["#ddd", "#08c"],       // 背景色从 #333 变为 #08c 
       },
-      duration: 1000,
+      delay: 300,                           // 播放延时
+      endDelay: 300,                        // 结束延时
+      duration: 2000,                       // 动画持续时长
+      easing: 'easeOutBounce',              // 动画缓动效果
     });
 
     // 设置为循环，往返，并开始播放
-    animation.loop().alternate().play();
+    t.loop().alternate().play();
   },
   methods: {},
 };
 </script>
 <style scoped>
 .demo {
+  margin-top:10px;
   position: relative;
-  height: 100px;
-  width: 100%;
-  background: #333;
-  border-radius: 5px;
-  /* border: 2px solid #ddd; */
+  height: 300px;
+  max-width: 400px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+h2 {
+  position:absolute;
+  padding:0;
+  margin:0;
+  right:15px;
+  top:0px;
+  line-height:40px;
+  color:#08c;
+  font-size:16px;
+  font-weight: normal;
+  border:none;
+  text-shadow: 1px 1px 0 #fff;
+
 }
 #div {
   position: absolute;
-  top: 25px;
-  left: 50px;
-  width: 50px;
-  height: 50px;
+  top: 50%;
+  left: 25px;
+  width: 60px;
+  height: 40px;
+  margin-top:-20px;
   background: #f8c555;
-  border-radius: 50%;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 </style>>
 
