@@ -1,5 +1,6 @@
 # 连续动画
 
+Demo
 
 <ClientOnly>
   <Continuous/>

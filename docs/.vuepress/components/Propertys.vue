@@ -166,12 +166,27 @@ export default {
 </script>
 <style scoped>
 .demo {
+  margin-top:10px;
   position: relative;
-  /* height: 100px; */
-  width: 100%;
-  background: #333;
-  border-radius: 5px;
-  /* border: 2px solid #ddd; */
+  height: 300px;
+  max-width: 400px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  border: 2px solid #fff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+h2 {
+  position:absolute;
+  padding:0;
+  margin:0;
+  right:15px;
+  top:0px;
+  line-height:40px;
+  color:#08c;
+  font-size:16px;
+  font-weight: normal;
+  border:none;
+  text-shadow: 1px 1px 0 #fff;
 }
 svg {
   display: block;

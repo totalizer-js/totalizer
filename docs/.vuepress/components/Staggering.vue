@@ -84,9 +84,9 @@ h2 {
 
 ul {
   position: absolute;
-  top: 100px;
-  left: 100px;
-  width: 200px;
+  top: 90px;
+  left: 95px;
+  width: 250px;
   padding: 0;
   margin: 0;
   display: flex;
@@ -96,7 +96,7 @@ ul {
 li {
   width: 30px;
   height: 20px;
-  margin: 0 10px 10px 0;
+  margin: 0 15px 15px 0;
   background: #08c;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0,0,0,.5);
