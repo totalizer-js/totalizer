@@ -82,7 +82,7 @@ const tweens = (opts) => Object.entries(opts.props).map(([prop, value]) => {
     endDelay,
     duration,
     easing,
-    prop:,
+    prop,
     type,
     from,
     to,
