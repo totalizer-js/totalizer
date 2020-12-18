@@ -6,7 +6,7 @@ module.exports = {
         nav: [
             { text: 'Home', link: '/' },
             { text: 'Document', link: '/document/' },
-            { text: 'GitHub', link: 'https://github.com/Z8264/totalizer' },
+            { text: 'GitHub', link: 'https://github.com/totalizer-js/totalizer' },
         ],
         sidebar: {
             '/document/': [
