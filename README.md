@@ -12,13 +12,19 @@
 </p>
 
 
-> 当前版本正处于测试阶段，正式版本即将发布。
-> 
-Totalizer JS 提供一种简单的DOM、SVG动画描述方式，以及一个管理多个动画描述的机制。它的诞生初衷是创建一个核心的动画渲染和管理的抽象层，以便构建复杂动画交互组件。
+> The current version is in beta, and the official version is about to be released.
+
+Totalizer JS provides a simple DOM & SVG animation description, and a mechanism for managing multiple animation descriptions. It was originally designed to create a core animation 
+abstraction layer for building complex animation interaction components.
 
 |<img src="https://totalizer-js.github.io/assets/img/staggering.cd8028d5.gif" alt="gif">|<img src="https://totalizer-js.github.io/assets/img/move.eda7985a.gif" alt="gif">|<img src="https://totalizer-js.github.io/assets/img/parallax.be7da7f1.gif" alt="gif">|
 |--|--|--|
 |<img src="https://totalizer-js.github.io/assets/img/svg01.f992618e.gif" alt="gif">|<img src="https://totalizer-js.github.io/assets/img/svg02.f66de65a.gif" alt="gif">|<img src="https://totalizer-js.github.io/assets/img/svg03.c7819b24.gif" alt="gif">|
+
+<table>
+<tr>
+</tr>
+</table>
 
 ## Installation
 
@@ -28,43 +34,42 @@ npm i -S totalizer
 
 ## Usage
 
-引入
+Import totalizer
 
 ``` javascript
 import Totalizer from 'totalizer';
 ```
 
-创建一个动画实例
+Create a Totalizer instance
 
 ``` javascript
 conat animation = new Totalizer();
 ```
 
-添加一个动画描述
+Add an animation description
 
 ``` javascript
 animation.add({
-  el: document.getElementById("div"),   // 动画节点
+  el: document.getElementById("div"),   // the target node
   props: {
-    translateX: [0, 200],               // 偏移量从 0px 变为 200px
-    background: ["#ddd", "#fff"],       // 背景色从 #ddd 变为 #fff 
+    translateX: [0, 200],               // translateX from '0px' to '200px'
+    background: ["#ddd", "#fff"],       // background from '#ddd' to '#fff' 
   },
-  duration: 1000,                       // 动画持续时间
-  delay: 200,                           // 动画延时
-  easing: 'easeOutBounce',              // 缓动效果
+  duration: 1000,                       // duration
+  delay: 200,                           // delay
+  easing: 'easeOutBounce',              // easing
 })
 ```
 
-控制动画实例
+Control the animation instance
 
 ``` javascript
-// 循环播放
 animation.loop().play();
 ```
 
 ## Documents
 
-更多内容请访问文档：
+For more, visit the official documentation
 
 [totalizer-js.github.io](//totalizer-js.github.io)
 ## License
