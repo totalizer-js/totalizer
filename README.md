@@ -23,6 +23,21 @@ Totalizer JS 提供一种简单的DOM、SVG动画描述方式，以及一个管�
 * 制作简单的补间动画，关键帧动画等。
 * 作为构建复杂动画组件的核心部分。例如，视差滚动，路径绘制，交错动画等。
 
+## Features
+
+Totalizer（累加器），顾名思义，可以通过添加多个动画描述，来实现复杂的动画。例如：
+
+
+
+<p><img src="https://totalizer-js.github.io/assets/img/staggering.cd8028d5.gif" alt="gif"> <img src="https://totalizer-js.github.io/assets/img/move.eda7985a.gif" alt="gif"><img src="https://totalizer-js.github.io/assets/img/parallax.be7da7f1.gif" alt="gif"></p>
+<p><img src="https://totalizer-js.github.io/assets/img/svg01.f992618e.gif" alt="gif"> <img src="https://totalizer-js.github.io/assets/img/svg02.f66de65a.gif" alt="gif"> <img src="https://totalizer-js.github.io/assets/img/svg03.c7819b24.gif" alt="gif"></p>
+
+
+* [交错动画](https://totalizer-js.github.io/document/Staggering.html)：添加多个不同元素的动画描述，来实现同步或交错动画。
+* [连续动画](https://totalizer-js.github.io/document/Continuous.html)：添加一个元素多个不同时间段的动画描述，来实现连续动画。
+* [视差动画](https://totalizer-js.github.io/document/Parallax.html)：通过改变动画的进程来实现视差效果。
+* [SVG动画](https://totalizer-js.github.io/document/SVG.html)：通过自定属性变化函数，来实现SVG动画特殊效果。
+
 ## Installation
 
 ``` shell
@@ -50,7 +65,7 @@ animation.add({
   el: document.getElementById("div"),   // 动画节点
   props: {
     translateX: [0, 200],               // 偏移量从 0px 变为 200px
-    background: ["#333", "#fff"],       // 背景色从 #333 变为 #fff 
+    background: ["#ddd", "#fff"],       // 背景色从 #ddd 变为 #fff 
   },
   duration: 1000,                       // 动画持续时间
   delay: 200,                           // 动画延时
@@ -65,30 +80,6 @@ animation.add({
 animation.loop().play();
 ```
 
-## Features
-
-
-Totalizer（累加器），顾名思义，可以通过添加多个动画描述，来实现复杂的动画。例如：
-
-* [交错动画](https://totalizer-js.github.io/document/Staggering.html)：添加多个不同元素的动画描述，来实现同步或交错动画。
-
-<img src="https://totalizer-js.github.io/assets/img/staggering.e649c58b.gif" alt="gif">
-
-* [连续动画](https://totalizer-js.github.io/document/Continuous.html)：添加一个元素多个不同时间段的动画描述，来实现连续动画。
-
-<img src="https://totalizer-js.github.io/assets/img/move.add4b4b3.gif" alt="gif">
-
-* [SVG动画](https://totalizer-js.github.io/document/SVG.html)：通过自定属性变化函数，来实现SVG动画特殊效果。
-  
-<p>
-<img src="https://totalizer-js.github.io/assets/img/svg01.75a80924.gif" alt="gif"> 
-<img src="https://totalizer-js.github.io/assets/img/svg02.075069cd.gif" alt="gif">
-<img src="https://totalizer-js.github.io/assets/img/svg03.6b08d578.gif" alt="gif">
-</p>
-
-* [视差动画](https://totalizer-js.github.io/document/Parallax.html)：通过设定动画的进程来实现视差效果。
-
-<img src="https://totalizer-js.github.io//assets/img/parallax.f4c863cc.gif" alt="gif">
 
 
 ## Documents
