@@ -47,7 +47,7 @@ export default {
           background: ['#ddd', '#08c'],
         },
         duration: 500,
-        delay: (parseInt(i / 5, 10) + (i % 5)) * 200,
+        delay: (parseInt(i / 5, 10) + (i % 5)) * 214,
       });
     });
 

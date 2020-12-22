@@ -34,7 +34,7 @@ export default {
         cy: (process) => path.getPointAtLength(totalLen * process).y,
       },
       delay: 0,
-      duration: 5000,
+      duration: 2000,
       loop: true,
     });
     t.loop().play();
