@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
- <img src="https://img.shields.io/npm/dm/totalizer.svg" alt="Downloads"></a>
+  <img src="https://img.shields.io/npm/dm/totalizer.svg" alt="Downloads"></a>
   <a href="https://www.npmjs.com/package/totalizer"><img src="https://img.shields.io/npm/v/totalizer.svg" alt="Version"></a>
   <img src="https://img.shields.io/npm/l/totalizer.svg" alt="License">
 </p>
@@ -17,14 +17,9 @@
 Totalizer JS provides a simple DOM & SVG animation description, and a mechanism for managing multiple animation descriptions. It was originally designed to create a core animation 
 abstraction layer for building complex animation interaction components.
 
-|<img src="https://totalizer-js.github.io/assets/img/staggering.cd8028d5.gif" alt="gif">|<img src="https://totalizer-js.github.io/assets/img/move.eda7985a.gif" alt="gif">|<img src="https://totalizer-js.github.io/assets/img/parallax.be7da7f1.gif" alt="gif">|
-|--|--|--|
-|<img src="https://totalizer-js.github.io/assets/img/svg01.f992618e.gif" alt="gif">|<img src="https://totalizer-js.github.io/assets/img/svg02.f66de65a.gif" alt="gif">|<img src="https://totalizer-js.github.io/assets/img/svg03.c7819b24.gif" alt="gif">|
-
-<table>
-<tr>
-</tr>
-</table>
+<p align="center">
+  <img src="https://totalizer-js.github.io/assets/img/show.8c1956b1.gif" alt="totalizer">
+</p>
 
 ## Installation
 
@@ -52,11 +47,14 @@ Add an animation description
 animation.add({
   el: document.getElementById("div"),   // the target node
   props: {
-    translateX: [0, 200],               // translateX from '0px' to '200px'
-    background: ["#ddd", "#fff"],       // background from '#ddd' to '#fff' 
+    translateX: [0, 300],               // translateX from '0px' to '300px'
+    scale: [0.4, 1],                    // scale from 0.4 to 1 
+    rotate: [0, 720],                   // rotate from 0deg to 720deg
+    background: ["#ddd", "#08c"],       // background from '#ddd' to '#08c' 
   },
-  duration: 1000,                       // duration
-  delay: 200,                           // delay
+  delay: 300,                           // delay
+  endDelay: 300,                        // endDelay
+  duration: 2000,                       // duration
   easing: 'easeOutBounce',              // easing
 })
 ```
@@ -64,7 +62,7 @@ animation.add({
 Control the animation instance
 
 ``` javascript
-animation.loop().play();
+animation.loop().alternate().play();
 ```
 
 ## Documents

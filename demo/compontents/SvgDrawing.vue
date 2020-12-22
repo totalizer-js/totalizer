@@ -30,9 +30,9 @@ export default {
       props: {
         strokeDashoffset: [totalLen, 0],
       },
-      duration: 2000,
-      delay: 300,
-      endDelay: 300,
+      duration: 1600,
+      delay: 200,
+      endDelay: 200,
     });
     t.loop().alternate().play();
   },

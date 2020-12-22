@@ -55,11 +55,17 @@ export default {
 
 <style lang="css" scoped>
 .page {
-  padding: 20px;
+  padding: 20px 0 200px;
+
+}
+h2 {
+  text-align: center;
+  line-height: 50px;
+  border-bottom: 1px solid #ddd;
 }
 ul {
   width: 1260px;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   clear: both;
   list-style: none;

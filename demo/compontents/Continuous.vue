@@ -25,7 +25,6 @@ export default {
         translateX: [0, 280],
       },
       duration: 500,
-      delay: 300,
     });
     t.add({
       el,
