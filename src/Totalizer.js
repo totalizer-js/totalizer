@@ -30,19 +30,22 @@ class Totalizer {
     this.loopTimes = 0;
     this.isReverse = false;
     this.isAlternate = false;
+    this.isPlaying = false;
+
+    /**
+     * life cycle
+     */
 
     if (options) this.add(options);
   }
 
-  get cur() {
+  get currentTime() {
     return this._cur;
   }
 
-  set cur(value) {
-    if (value !== this._cur) {
-      this._cur = value;
-      this.render();
-    }
+  set currentTime(value) {
+    this._cur = value;
+    this.render();
   }
 
   render() {
@@ -53,7 +56,7 @@ class Totalizer {
   }
 
   _setRenderMap(tween) {
-    const cur = this.isReverse ? (this.totalTime - this.cur) : this.cur;
+    const cur = this.isReverse ? (this.totalTime - this.currentTime) : this.currentTime;
     const level = getLevel(tween, cur);
 
     let process;
@@ -121,13 +124,15 @@ class Totalizer {
     if (!this._start) {
       this._start = t;
     }
+
     this._now = t - this._start + this._last;
+
     if (this._now <= this.totalTime) {
-      this.cur = this._now;
+      this.currentTime = this._now;
     } else {
       this.loopTimes -= 1;
       if (this.loopTimes > 0) {
-        this.cur = this.totalTime;
+        this.currentTime = this.totalTime;
         this._start = 0;
         this._last = 0;
         if (this.isAlternate) this.isReverse = !this.isReverse;
@@ -139,6 +144,7 @@ class Totalizer {
 
   play() {
     engine.add(this);
+    this.isPlaying = true;
     return this;
   }
 
@@ -148,14 +154,20 @@ class Totalizer {
   }
 
   reverse(value) {
-    if (value !== undefined) this.isReverse = Boolean(value);
-    else this.isReverse = !this.isReverse;
+    if (typeof value === 'boolean' && value === this.isReverse) return this;
+
+    this.isReverse = !this.isReverse;
+    this._start = 0;
+    this._last = this.totalTime - this._now;
+
     return this;
   }
 
   alternate(value) {
-    if (value !== undefined) this.isAlternate = Boolean(value);
-    else this.isAlternate = !this.isAlternate;
+    if (typeof value === 'boolean' && value === this.isAlternate) return this;
+
+    this.isAlternate = !this.isAlternate;
+
     return this;
   }
 
@@ -163,29 +175,32 @@ class Totalizer {
     this._last = this._now;
     this._start = 0;
     engine.remove(this);
+    this.isPlaying = false;
     return this;
   }
 
   process(val) {
-    this.cur = this.totalTime * Math.max(0, Math.min(val, 1));
+    this.currentTime = this.totalTime * Math.max(0, Math.min(val, 1));
     return this;
   }
 
   reset() {
     this._start = 0;
     this._last = 0;
-    this.cur = 0;
+    this.currentTime = 0;
 
     engine.remove(this);
+    this.isPlaying = false;
     return this;
   }
 
   finish() {
     this._last = 0;
     this._start = 0;
-    this.cur = this.totalTime;
+    this.currentTime = this.totalTime;
 
     engine.remove(this);
+    this.isPlaying = false;
     return this;
   }
 

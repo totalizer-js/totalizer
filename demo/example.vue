@@ -1,15 +1,15 @@
 <template>
   <div class="page">
-    <h2>基础</h2>
+    <h2>Base</h2>
     <ul>
       <li><started /></li>
     </ul>
-    <h2>动画描述</h2>
+    <h2>Describe</h2>
     <ul>
       <li><propertys /></li>
       <li><propertys-02 /></li>
     </ul>
-    <h2>进阶</h2>
+    <h2>More</h2>
     <ul>
       <li><continuous /></li>
       <li><staggering /></li>
@@ -19,6 +19,11 @@
       <li><svg-drawing /></li>
       <li><svg-changing /></li>
       <li><svg-moving /></li>
+    </ul>
+    <h2>Controll</h2>
+    <ul>
+      <li><controll />
+      <li><hover /></li>
     </ul>
   </div>
 </template>
@@ -32,6 +37,8 @@ import Started from './compontents/Started.vue';
 import SvgChanging from './compontents/SvgChanging.vue';
 import SvgDrawing from './compontents/SvgDrawing.vue';
 import SvgMoving from './compontents/SvgMoving.vue';
+import Hover from './compontents/Hover.vue';
+import Controll from './compontents/Controll.vue';
 
 export default {
   data() {
@@ -49,6 +56,8 @@ export default {
     Staggering,
     Propertys,
     Propertys02,
+    Hover,
+    Controll,
   },
 };
 </script>
