@@ -35,6 +35,7 @@ class Totalizer {
     /**
      * life cycle
      */
+    this._callbackFn = () => {};
 
     if (options) this.add(options);
   }
@@ -137,6 +138,7 @@ class Totalizer {
         this._last = 0;
         if (this.isAlternate) this.isReverse = !this.isReverse;
       } else {
+        this.loopTimes = 0;
         this.finish();
       }
     }
@@ -150,6 +152,11 @@ class Totalizer {
 
   loop(val = Infinity) {
     this.loopTimes = val || 0;
+    return this;
+  }
+
+  once() {
+    this.loopTimes = 0;
     return this;
   }
 
@@ -201,6 +208,8 @@ class Totalizer {
 
     engine.remove(this);
     this.isPlaying = false;
+
+    this._callbackFn();
     return this;
   }
 
@@ -218,6 +227,10 @@ class Totalizer {
 
     this.tweens.push(...createTweens(opts));
     return this;
+  }
+
+  cb(fn) {
+    this._callbackFn = fn;
   }
 
   clear() {

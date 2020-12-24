@@ -22,8 +22,12 @@
     </ul>
     <h2>Controll</h2>
     <ul>
-      <li><controll />
+      <li><controll /></li>
       <li><hover /></li>
+    </ul>
+    <h2>Eases</h2>
+    <ul>
+      <li><eases /></li>
     </ul>
   </div>
 </template>
@@ -39,6 +43,7 @@ import SvgDrawing from './compontents/SvgDrawing.vue';
 import SvgMoving from './compontents/SvgMoving.vue';
 import Hover from './compontents/Hover.vue';
 import Controll from './compontents/Controll.vue';
+import Eases from './compontents/Eases.vue';
 
 export default {
   data() {
@@ -58,6 +63,7 @@ export default {
     Propertys02,
     Hover,
     Controll,
+    Eases,
   },
 };
 </script>
