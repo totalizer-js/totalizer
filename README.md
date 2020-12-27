@@ -11,6 +11,7 @@
   <img src="https://img.shields.io/npm/l/totalizer.svg" alt="License">
 </p>
 
+> The current version is 0.1.x, and the project is in the trial run stage of production environment
 
 Totalizer JS provides a simple DOM & SVG animation description, and a mechanism for managing multiple animation descriptions. It was originally designed to create a core animation 
 abstraction layer for building complex animation interaction components.
